@@ -1,0 +1,10 @@
+__pycache__
+~*
+*.synctex.gz
+*.pyc
+*.pyo
+.idea
+*.auc
+*.log
+*.toc
+*.out

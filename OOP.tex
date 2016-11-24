@@ -1,0 +1,420 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[hmargin={30mm, 17mm}, vmargin={20mm,20mm}, nohead]{geometry}
+\usepackage{polyglossia, enumitem, array, multirow, tabularx, rotating, indentfirst, caption, float, ulem, titlesec, longtable }%}
+\setdefaultlanguage{russian} % выбор основного языка (для переносов)
+\defaultfontfeatures{Ligatures=TeX} % нужен для того, чтобы работали стандартные сочетания символов ---, -- << >> и т.п.
+
+% шрифты 
+\setmainfont{Times New Roman} 
+\setmonofont[Scale=0.9]{Consolas}
+\setsansfont{Trebuchet MS}
+
+
+
+% pdf metadata
+\usepackage[
+  pdfencoding=unicode,
+  pdftitle={Рабочая программа дисциплины Объектно-ориентированное программирование},
+  pdfauthor={составлена }, 
+  bookmarksnumbered=true, 
+    colorlinks=true, linktocpage=true, linkcolor=blue, pdfpagemode=UseOutlines]
+{hyperref}
+
+
+\titleformat*{\section}{\large\bfseries\centering}
+\titleformat*{\subsection}{\bfseries}
+
+\makeatletter
+
+% заполняет ширину текста полем с подчеркиванием.
+% #1 - текст слева, #2 - на подчеркивании, #3 - справа, #4 - подпись под подчеркнутым
+\newcommand{\ulfield}[4]{
+\noindent
+\begin{tabularx}{\linewidth}{@{}l@{}X@{}l@{}}
+#1\if\relax\detokenize{#1}\relax\else\,~\vrule width 0pt\fi 
+& \uline{\vrule width 0pt\hfill#2\hfill\vrule width 0pt} & 
+\if\relax\detokenize{#3}\relax\else\vrule width 0pt~\,\fi #3
+\\
+& {\scriptsize \vrule width 0pt\hfill#4\hfill\vrule width 0pt}
+\end{tabularx}
+}
+
+\newcommand{\datefield}[1][]{
+\if\relax\detokenize{#1}\relax%
+«\uline{\hspace{22pt}}»~\uline{\hspace{90pt}}\,~20\uline{\hspace{20pt}}~г.\else
+«\uline{\hspace{18pt}}»~\uline{\hspace{60pt}}\,~20\uline{\hspace{18pt}}~г.\fi
+}
+
+\setlist[enumerate,1]{nolistsep,labelindent=0pt,leftmargin=\parindent}
+\setlist[itemize,1]{nolistsep,labelindent=0pt,leftmargin=*,label=--}
+
+\newcommand\rotleft{\rotatebox{90}}
+
+\captionsetup[table]{singlelinecheck=off, font=small, labelsep=period, textfont=it, format=hang, justification=raggedleft}
+
+
+\newenvironment{contentstable}{
+\begin{table}[H]
+\caption{Структура и содержание дисциплины}
+\begin{tabular}{|l|l|>{\raggedright}p{25ex}|*{5}{r|}p{8ex}|p{9ex}|}
+\hline
+\multicolumn{1}{|l|}     {~\raisebox{-12pt}[0pt][0pt]{\multirow{2}{*}{\rotleft{\raisebox{-4pt}[0pt][0pt]{№ п/п}}}}} &
+\multicolumn{1}{l|}      {~\raisebox{-5pt}[0pt][0pt]{\multirow{2}{*}{\rotleft{Недели семестра}}}} &
+\multicolumn{1}{c|}      {\multirow{2}{*}[-5ex]{\parbox{25ex}{\centering ~\linebreak Раздел дисциплины, \linebreak содержание}}} & 
+\multicolumn{4}{p{17ex}|}{\centering Виды учебной работы, трудоем- кость (в~часах)} &
+\multicolumn{1}{c|}      {~~\raisebox{18pt}[0pt][0pt]{\multirow{2}{*}{\rotleft{\parbox{25ex}{\centering КСР (в часах)}}}}} &
+\multicolumn{1}{c|}      {\raisebox{25pt}[0pt]     [0pt]{\multirow{2}{*}{\rotleft{\parbox{28ex}{\centering Применяемые образова\-тельные (интер\-активные) технологии*}}}}} &
+\multicolumn{1}{c|}      {~~\raisebox{12pt}{\multirow{2}{*}{\rotleft{\parbox{22ex}{\centering Форма текущего контроля}}}}} \\
+\cline{4-7}
+ & & &
+~\raisebox{-2pt}{\rotleft{Лекций~} }& 
+~\raisebox{-2pt}{\rotleft{Практич.~}} &
+~\raisebox{-2pt}{\rotleft{Лаборат.~}} &
+~\raisebox{-2pt}{\rotleft{СРС~}} &
+ & & \\
+\hline}{\\ \hline\end{tabular}\end{table}}
+
+\newenvironment{srstable}{
+\begin{table}[H]
+    \caption{Содержание самостоятельной работы студентов}
+    \begin{tabular}{|r|p{26ex}|l|r|r|p{9ex}|}
+    \hline
+    № & 
+    \multicolumn{1}{p{37ex}|}{\centering Наименование раздела, темы} & 
+    \multicolumn{1}{c|}{Виды} & 
+    \multicolumn{1}{p{6ex}|}{\centering Объем часов} & 
+    \multicolumn{1}{p{14ex}|}{\centering Используемые ресурсы} & 
+    Контроль\\%
+\hline}{\\ \hline\end{tabular}\end{table}}
+    
+\newenvironment{littable}{
+    \begin{table}[H]
+    \caption{Карта обеспеченности литературой}
+    \begin{tabular}{|c|>{\raggedright}p{18.5em}|>{\raggedright}p{14ex}|>{\raggedleft}p{9ex}|p{9ex}|}
+    \hline
+    № & 
+    \centering {\small Автор, название, место издания, издательство, 
+    год издания учебной литературы, вид и~характеристика иных информационных ресурсов} &
+    \centering {\small Наличие грифа, вид грифа} & 
+    \centering {\small Кол-во экз. в библиотеке СВФУ} & 
+    \centering {\small Кол-во экз. в библиотеке кафедры} \tabularnewline 
+    \hline}{\\ \hline\end{tabular}\end{table}}
+
+\newenvironment{internettable}{
+    \begin{table}[H]
+    \caption{Интернет-ресурсы}
+    \begin{tabular}{|c|>{\raggedright}p{9em}|>{\raggedright}p{7.7em}|>{\raggedright}p{12ex}|p{24ex}|}
+    \hline
+    № & 
+    \centering Наименование интернет-ресурса & 
+    \centering Автор, разработчики & 
+    \centering Формат документа & 
+    \centering \raisebox{-8pt}{Ссылка (URL)} 
+    \tabularnewline \hline}{\\ \hline\end{tabular}\end{table}}
+
+
+%%% Перенос составных слов
+\XeTeXinterchartokenstate=1
+\XeTeXcharclass `\- 24
+\XeTeXinterchartoks 24 0 = {\hskip\z@skip}
+\XeTeXinterchartoks 0 24 = {\nobreak}
+
+%%% Настройка содержания
+\AtBeginDocument{%
+\makeatletter 
+\def\@tocline#1#2#3#4#5#6#7{\relax
+  \ifnum #1>\c@tocdepth % then omit
+  \else
+    \par \addpenalty\@secpenalty\addvspace{#2}%
+    \begingroup \hyphenpenalty\@M
+    \@ifempty{#4}{%
+      \@tempdima\csname r@tocindent\number#1\endcsname\relax
+    }{%
+      \@tempdima#4\relax
+    }%
+    \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
+    \rightskip\@pnumwidth plus4em \parfillskip-\@pnumwidth
+    #5\leavevmode\hskip-\@tempdima
+      \ifcase #1
+       \or\or \hskip 1em \or \hskip 2em \else \hskip 3em \fi%
+      #6\nobreak\relax
+    \dotfill\hbox to\@pnumwidth{\@tocpagenum{#7}}\par
+    \nobreak
+    \endgroup
+  \fi}
+}%AtBeginDocument
+
+
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\noindent
+\begin{center}
+Министерство образования и науки Российской Федерации \\
+Федеральное государственное автономное образовательное \\
+учреждение высшего образования\\
+«СЕВЕРО-ВОСТОЧНЫЙ ФЕДЕРАЛЬНЫЙ УНИВЕРСИТЕТ ИМЕНИ М.\,К.~АММОСОВА» \\
+Институт математики и информатики \\
+Кафедра информационных технологий
+
+\vspace{12mm}
+\begin{flushright}
+\parbox{80mm}{
+УТВЕРЖДАЮ\\
+Директор ИМИ\\[2mm]
+\ulfield{}{}{/\,В.\,И.~Афанасьева\,/}{}\\
+\datefield
+\\[20mm]
+}
+\end{flushright}
+
+
+\textbf{РАБОЧАЯ ПРОГРАММА ДИСЦИПЛИНЫ}
+\\[2mm]
+\textbf{Б1.В.ОД.2.1\ -- Объектно-ориентированное программирование} 
+\\[5mm]
+
+для программы магистратуры\\
+по направлению подготовки \\
+09.04.01 -- Информатика и вычислительная техника
+\\[15mm]
+
+\begin{tabular}{p{0.3\textwidth}p{0.3\textwidth}p{0.3\textwidth}}
+  ОДОБРЕНО &  ОДОБРЕНО  & РЕКОМЕНДОВАНО \\
+  Заведующий кафедрой \newline разработчика &
+  Заведующий выпускающей кафедрой ИТ&
+  Нормоконтроль в составе ОП пройден \\
+  \ulfield{}{}{\uline{/\hspace{30mm}/}}{} &
+  \ulfield{}{}{\uline{/\hspace{30mm}/}}{} &
+  \ulfield{}{}{\uline{/\hspace{30mm}/}}{} \\
+  Протокол № \uline{\hspace{13pt}} от\newline \datefield[small] & 
+  Протокол № \uline{\hspace{13pt}} от\newline \datefield[small] & 
+  Протокол № \uline{\hspace{13pt}} от\newline \datefield[small] 
+\end{tabular}
+\par\vfill\vspace{6mm}
+Якутск -- 2016
+
+\end{center}
+
+
+\newpage
+
+
+\begin{center}
+\section{АННОТАЦИЯ}
+{\bf к рабочей программе дисциплины\\
+Б1.В.ОД.2.1\ -- Объектно-ориентированное программирование} \\
+Трудоемкость \uline{~3~} з.~е.
+\end{center}
+
+
+\subsection{Цель освоения и краткое содержание дисциплины}
+Целью освоения дициплины <<Объектно-ориентированное программирование>> является
+
+
+\subsection{Перечень планируемых результатов обучения по дисциплине, соотнесенных с планируемыми результатами освоения образовательной программы.}
+\begin{longtable}{|p{8cm}|p{8cm}|}
+\caption{Перечень планируемых результатов обучения}\\
+\hline
+\centering
+Планируемые результаты освоения программы (содержание и коды компетенций) & 
+\centering\arraybackslash
+Планируемые результаты обучения по дисциплине
+\\
+\hline
+
+ПК-6 : пониманием существующих подходов к верификации моделей программного обеспечения (ПО), 
+
+ПК-8 : способностью проектировать распределенные информационные системы, их компоненты и протоколы их взаимодействия
+
+& \\
+\hline
+\end{longtable}
+
+
+\subsection{Место дисциплины в~структуре образовательной программы}
+
+  \begin{table}[H]
+  \setlength\arraycolsep{3pt}
+  \caption{Содержательно-логические связи дисциплины}
+  \begin{tabular}{|l|p{18ex}|*{2}{p{23ex}|}}
+  \hline
+  \multicolumn{1}{|c|}{\multirow{2}{13ex}{\centering Индекс \linebreak дисциплины}} &
+  \multicolumn{1}{c|}{\multirow{2}{18ex}{\centering Наименование \linebreak дисциплины}} & 
+  \multicolumn{2}{p{46ex}|}{\centering Коды учебных дисциплин, практик} \\
+  \cline{3-4}
+   & & 
+  \centering на которые опирается содержание дисциплины & 
+  \centering\arraybackslash для которых содержание дисциплины выступает опорой
+  \\ \hline
+  Б1.В.ОД.2.1 & Объектно-ориентированное программирование &  & 
+  \\ \hline
+  \end{tabular}
+  \end{table}
+
+\subsection{Язык преподавания} 
+
+  Русский.
+
+\newpage
+
+\section{Объем дисциплины в зачетных единицах с указанием количества академических часов, выделенных на контактную работу обучающихся с преподавателем (по~видам учебных занятий) и~на~самостоятельную работу обучающихся}
+
+\begin{table}[H]
+\caption{Выписка из учебного плана} 
+\begin{tabular}{|p{9cm}|c|c|}
+\hline
+Код и название дисциплины по учебному плану & \multicolumn{2}{p{6cm}|}{Б1.В.ОД.2.1\ -- Объектно-ориентированное программирование }\\
+\hline
+Курс изучения &\multicolumn{2}{c|}{ 1 }\\
+\hline
+Семестр(ы) изучения &\multicolumn{2}{c|}{ 1 }\\
+\hline
+Форма промежуточной аттестации (зачет/экзамен) &\multicolumn{2}{c|}{ зачет }\\
+\hline
+Курсовой проект / курсовая работа (указать вид работы при наличии в учебном плане), семестр выполнения &\multicolumn{2}{c|}{ }\\
+\hline
+Трудоемкость (в ЗЕТ) &\multicolumn{2}{c|}{ 3 (3) }\\
+\hline
+{\bf Трудоемкость (в часах)} (сумма строк №1,2,3), в~т.ч.:& \multicolumn{2}{c|}{108}\\
+\hline
+№\,1. Контактная работа обучающихся с преподавателем (КР), в часах:
+& \multicolumn{1}{p{3cm}|}{\centering Объем аудиторной работы, в часаx}
+& \multicolumn{1}{p{3cm}|}{\centering\arraybackslash В~т.\,ч. с~применением ДОТ или ЭО, в~часах}\\
+\hline  
+Объем работы (в часах) (1.1.+1.2.+1.3.)& 54 & \\
+\hline
+1.1. Занятия лекционного типа (лекции) & 18 & \\
+\hline
+1.2. Занятия семинарского типа, всего, в т.ч.: & & \\
+\hline
+- семинары (практические занятия, коллоквиумы и~т.~п.)  & – & \\
+\hline
+- лабораторные работы& 36 & \\
+\hline
+- практикумы & & \\
+\hline
+1.3. КСР (контроль самостоятельной работы, консультации)& 5 & \\
+\hline
+{\bf №\,2. Самостоятельная работа обучающихся (СРС) (в часах)}& \multicolumn{2}{c|}{49}\\
+\hline
+{\bf №\,3. Количество часов на экзамен (при наличии экзамена в учебном плане)}& \multicolumn{2}{c|}{–}\\
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+\section{Содержание дисциплины, структурированное по~темам с~указанием отведенного на~них количества академических часов и~видов учебных занятий}
+\begin{longtable}{|p{5cm}|c|c|c|c|c|c|c|c|c|c|c|}
+\caption{}\\
+\hline
+Тема & 
+\rotleft{Лекции} &
+\rotleft{из них с применением  ЭО и ДОТ} &
+\rotleft{Семинары  (практические занятия, коллоквиумы)} &
+\rotleft{из них с применением  ЭО и ДОТ} &
+\rotleft{Лабораторные работы} &
+\rotleft{из них с применением  ЭО и ДОТ} &
+\rotleft{Практикумы} &
+\rotleft{из них с применением  ЭО и ДОТ} &
+\rotleft{КСР (консультации) &
+\rotleft{Всего часов}\\
+\hline
+\end{longtable}
+
+
+\subsection{Распределение часов по~темам и~видам учебных занятий}
+
+\subsection{Содержание тем программы дисциплины} 
+
+
+\section{Перечень учебно-методического обеспечения для самостоятельной работы обучающихся по дисциплине}
+
+\section{Методические указания для обучающихся по освоению дисциплины}
+
+\section{Фонд оценочных средств для проведения промежуточной аттестации обучающихся по дисциплине}
+
+\section{Перечень основной и дополнительной учебной литературы, необходимой для освоения дисциплины}
+
+\section{Перечень ресурсов информационно-телекоммуникационной сети «Интернет» (далее сеть-Интернет), необходимых для освоения дисциплины}
+
+\section{Перечень информационных технологий, используемых при осуществлении образовательного процесса по дисциплине, включая перечень программного обеспечения и информационных справочных систем (при необходимости)}
+
+\section{Описание материально-технической базы, необходимой для осуществления образовательного процесса по дисциплине}
+
+
+\subsection{Перечень информационных технологий, используемых при осуществлении образовательного процесса по дисциплине}
+При осуществлении образовательного процесса по дисциплине используются следующие информационные технологии:
+\begin{itemize}[nolistsep]
+\item 
+\end{itemize}
+
+\subsection{Перечень программного обеспечения}
+\begin{itemize}[nolistsep]
+\item 
+\end{itemize}
+
+
+
+\newpage
+\begin{center}
+\section*{ЛИСТ АКТУАЛИЗАЦИИ РАБОЧЕЙ ПРОГРАММЫ ДИСЦИПЛИНЫ}
+Б1.В.ОД.2.1\ --- Объектно-ориентированное программирование 
+\end{center}
+
+  \noindent
+  \begin{tabular}{|p{15mm}|p{67mm}|p{25mm}|p{41mm}|}
+    \hline
+    \small\centering
+    Учебный год 
+    & \small\centering
+    Внесенные изменения 
+    & \small\centering
+    Преподаватель (ФИО) 
+    & \small\centering\arraybackslash
+    Протокол заседания выпускающей кафедры (дата, номер), ФИО зав.кафедрой, подпись \\
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+    & & & \\\hline
+  \end{tabular}
+
+  \medskip\noindent\textit{В таблице указывается только характер изменений (например, изменение темы, списка источников по~теме или темам, средств промежуточного контроля) с~указанием пунктов рабочей программы. Само содержание изменений оформляется приложением по~сквозной нумерации.}
+
+\newpage\tableofcontents
+
+\end{document}
