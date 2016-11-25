@@ -1,7 +1,7 @@
 
 import configparser, argparse
 from xml.etree import ElementTree as XMLTree
-from os.path import abspath, splitext
+from os.path import abspath, splitext, split as splitpath
 from jinja2 import Environment as Jinja2Renderer, FileSystemLoader
 from collections import OrderedDict
 from subprocess import check_call as execute
@@ -51,7 +51,14 @@ def load_ini(filename)-> dict:
     f = open(filename, encoding='utf-8')
     parser.read_file(f)
     f.close()
-    return {k: parser['Заголовки'][k] for k in parser['Заголовки']}
+    res = {k: parser['Заголовки'][k] for k in parser['Заголовки']}
+    for section in parser:
+        if section in ('DEFAULT', 'Заголовки'): continue
+        secname = ''.join(map(str.capitalize, section.split()))
+        sec = parser[section]
+        res.update({secname+key.capitalize(): [row.split('|') for row in sec[key].split('\n')] 
+                                               for key in sec})
+    return res 
         
 
 def load_discipline_data_from_xml(planfile: str, disc_code : str, disc_name : str) -> dict:
@@ -175,7 +182,8 @@ def expand_competence_list(comp_string : str, plan_competences : list):
 def produce_tex(template, filename, context, compile=True):
     """Генерирует новый .tex-файл РПД, подставляя данные контекста в шаблон.
     Если compile==True, вызывает xelatex на полученном файле"""
-    tex_file = splitext(filename)[0] + '.tex'
+    fn = splitpath(filename)[1]
+    tex_file = splitext(fn)[0] + '.tex'
     output = open(tex_file, 'w', encoding='utf-8')
     output.write(template.render(**context))
     output.close()

@@ -93,19 +93,6 @@
     Контроль\\%
 \hline}{\\ \hline\end{tabular}\end{table}}
     
-\newenvironment{littable}{
-    \begin{table}[H]
-    \caption{Карта обеспеченности литературой}
-    \begin{tabular}{|c|>{\raggedright}p{18.5em}|>{\raggedright}p{14ex}|>{\raggedleft}p{9ex}|p{9ex}|}
-    \hline
-    № & 
-    \centering {\small Автор, название, место издания, издательство, 
-    год издания учебной литературы, вид и~характеристика иных информационных ресурсов} &
-    \centering {\small Наличие грифа, вид грифа} & 
-    \centering {\small Кол-во экз. в библиотеке СВФУ} & 
-    \centering {\small Кол-во экз. в библиотеке кафедры} \tabularnewline 
-    \hline}{\\ \hline\end{tabular}\end{table}}
-
 \newenvironment{internettable}{
     \begin{table}[H]
     \caption{Интернет-ресурсы}
@@ -356,38 +343,47 @@ a & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28
 
 \section{Фонд оценочных средств для проведения промежуточной аттестации обучающихся по дисциплине}
 
+\newpage
 \section{Перечень основной и дополнительной учебной литературы, необходимой для освоения дисциплины}
 
-\begin{longtable}{|l|p{7cm}|c|c|p{32mm}|}
-\hline
-№ & 
-Автор, название, место издания, издательство, год издания учебной литературы, вид и характеристика иных информационных ресурсов &
-\multicolumn{1}{p{25mm}|}{Наличие грифа, вид грифа} &
-\multicolumn{1}{p{25mm}|}{НБ СВФУ, кафедральная библиотека и кол-во экземпляров} & 
-\multicolumn{1}{p{25mm}|}{Электронные издания: точка доступа к ресурсу (наименование ЭБС, ЭБ СВФУ)}\\
-\hline
-\multicolumn{5}{|c|}{Основная литература}\\
-{% for lit in literature %}
-\hline
-<= forloop.index => & <= lit.name => & <= list.grif => & <= list.grif => & <= list.quantity => & <= list.url =>
-\\
-\hline
-{% endfor %}
-\multicolumn{5}{|c|}{Основная литература}\\
-\hline
-{% for lit in additionalliterature %}
-\hline
-<= forloop.index => & <= lit.name => & <= list.grif => & <= list.grif => & <= list.quantity => & <= list.url =>
-\\
-\hline
-{% endfor %}
-\end{longtable}
-
+  \begin{table}[H]
+  \caption*{Перечень литературы}
+  \begin{longtable}{|l|p{7cm}|p{18mm}|c|p{32mm}|}
+  \hline
+  № & 
+  \centering\small\arraybackslash Автор, название, место издания, издательство, год издания учебной литературы, вид и характеристика иных информационных ресурсов &
+  \multicolumn{1}{p{18mm}|}{\centering\small\arraybackslash Наличие грифа, вид грифа} &
+  \multicolumn{1}{p{21mm}|}{\centering\small\arraybackslash НБ СВФУ, кафедральная библиотека и кол-во экземпляров} & 
+  \centering\small\arraybackslash Электронные издания: точка доступа к ресурсу (наименование ЭБС, ЭБ СВФУ)\\
+  \hline
+  \multicolumn{5}{|c|}{Основная литература}\\
+  \hline
+  %{ for lit in ЛитератураОсн %}<= loop.index => &\raggedright\arraybackslash <= lit[0] => & <= lit[1] => & <= lit[2] => & <= lit[3] => 
+  \\
+  \hline
+  %{ endfor %}
+  \multicolumn{5}{|c|}{Дополнительная литература}\\
+  \hline
+  %{ for lit in ЛитератураДоп %}<= loop.index => &\raggedright\arraybackslash <= lit[0] => & <= lit[1] => & <= lit[2] => & <= lit[3] => 
+  \\
+  \hline
+  %{ endfor %}
+  \end{longtable}
+  \end{table}
+  
 \section{Перечень ресурсов информационно-телекоммуникационной сети «Интернет» (далее сеть-Интернет), необходимых для освоения дисциплины}
+\begin{enumerate}
+  %{ for item in РесурсыИнтернетСписок %}
+  \item <= item[0] => 
+  %{ endfor %}
+\end{enumerate}
 
-\section{Перечень информационных технологий, используемых при осуществлении образовательного процесса по дисциплине, включая перечень программного обеспечения и информационных справочных систем (при необходимости)}
+\newpage
+\section{9. Описание материально-технической базы, необходимой для осуществления образовательного процесса по дисциплине}
+  %{ for item in МатериальнаяБазаСписок %}
+  \par <= item[0] => 
+  %{ endfor %}
 
-\section{Описание материально-технической базы, необходимой для осуществления образовательного процесса по дисциплине}
 
 
 \subsection{Перечень информационных технологий, используемых при осуществлении образовательного процесса по дисциплине}
