@@ -5,6 +5,7 @@ __pycache__
 *.pyo
 .idea
 *.auc
+*.aux
 *.log
 *.toc
 *.out
