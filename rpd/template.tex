@@ -20,15 +20,18 @@
 % pdf metadata
 \usepackage[
   pdfencoding=unicode,
-  pdftitle={Рабочая программа дисциплины <= discipline =>},
+  pdftitle={Рабочая программа дисциплины <= дисциплина =>},
   pdfauthor={составлена <= author =>}, 
   bookmarksnumbered=true, 
     colorlinks=true, linktocpage=true, linkcolor=blue, pdfpagemode=UseOutlines]
 {hyperref}
 
-
+% формат заголовков, подписей и списков
 \titleformat*{\section}{\large\bfseries\centering}
 \titleformat*{\subsection}{\bfseries}
+\captionsetup[table]{singlelinecheck=off, font=small, labelsep=period, textfont=it, format=hang, justification=raggedleft}
+\setlist[enumerate,1]{nolistsep,labelindent=0pt,leftmargin=\parindent}
+\setlist[itemize,1]{nolistsep,labelindent=20pt,leftmargin=*,label=--}
 
 \makeatletter
 
@@ -45,19 +48,21 @@
 \end{tabularx}
 }
 
+%%% Перенос составных слов
+\XeTeXinterchartokenstate=1
+\XeTeXcharclass `\- 24
+\XeTeXinterchartoks 24 0 = {\hskip\z@skip}
+\XeTeXinterchartoks 0 24 = {\nobreak}
+
+\makeatother
+
 \newcommand{\datefield}[1][]{
 \if\relax\detokenize{#1}\relax%
 «\uline{\hspace{22pt}}»~\uline{\hspace{90pt}}\,~20\uline{\hspace{20pt}}~г.\else
 «\uline{\hspace{18pt}}»~\uline{\hspace{60pt}}\,~20\uline{\hspace{18pt}}~г.\fi
 }
 
-\setlist[enumerate,1]{nolistsep,labelindent=0pt,leftmargin=\parindent}
-\setlist[itemize,1]{nolistsep,labelindent=20pt,leftmargin=*,label=--}
-
 \newcommand\rotleft{\rotatebox{90}}
-
-\captionsetup[table]{singlelinecheck=off, font=small, labelsep=period, textfont=it, format=hang, justification=raggedleft}
-
 
 \newenvironment{contentstable}{
 \begin{table}[H]
@@ -80,6 +85,7 @@
  & & \\
 \hline}{\\ \hline\end{tabular}\end{table}}
 
+
 \newenvironment{srstable}{
 \begin{table}[H]
     \caption{Содержание самостоятельной работы студентов}
@@ -93,25 +99,6 @@
     Контроль\\%
 \hline}{\\ \hline\end{tabular}\end{table}}
     
-\newenvironment{internettable}{
-    \begin{table}[H]
-    \caption{Интернет-ресурсы}
-    \begin{tabular}{|c|>{\raggedright}p{9em}|>{\raggedright}p{7.7em}|>{\raggedright}p{12ex}|p{24ex}|}
-    \hline
-    № & 
-    \centering Наименование интернет-ресурса & 
-    \centering Автор, разработчики & 
-    \centering Формат документа & 
-    \centering \raisebox{-8pt}{Ссылка (URL)} 
-    \tabularnewline \hline}{\\ \hline\end{tabular}\end{table}}
-
-
-%%% Перенос составных слов
-\XeTeXinterchartokenstate=1
-\XeTeXcharclass `\- 24
-\XeTeXinterchartoks 24 0 = {\hskip\z@skip}
-\XeTeXinterchartoks 0 24 = {\nobreak}
-
 %%% Настройка содержания
 \AtBeginDocument{%
 \makeatletter 
@@ -136,8 +123,6 @@
     \endgroup
   \fi}
 }%AtBeginDocument
-
-
 
 \begin{document}
 
@@ -166,7 +151,7 @@
 
 \textbf{РАБОЧАЯ ПРОГРАММА ДИСЦИПЛИНЫ}
 \\[2mm]
-\textbf{<= disciplinecode =>\ -- <= discipline =>} 
+\textbf{<= код =>\ -- <= дисциплина =>} 
 \\[5mm]
 
 для программы <= level =>\\
@@ -187,7 +172,7 @@
   Протокол № \uline{\hspace{13pt}} от\newline \datefield[small] 
 \end{tabular}
 \par\vfill\vspace{6mm}
-Якутск -- <= year =>
+Якутск -- <= год =>
 
 \end{center}
 
@@ -198,13 +183,21 @@
 \begin{center}
 \section{АННОТАЦИЯ}
 {\bf к рабочей программе дисциплины\\
-<= disciplinecode =>\ -- <=discipline =>} \\
-Трудоемкость \uline{~<= zet =>~} з.~е.
+<= код =>\ -- <= дисциплина =>} \\
+Трудоемкость \uline{~<= ЗЕТ =>~} з.~е.
 \end{center}
 
 
 \subsection{Цель освоения и краткое содержание дисциплины}
-Целью освоения дициплины <<<= discipline =>>> является
+%{ if АннотацияЦели %}
+Преподавание дициплины <<<= дисциплина =>>> имеет следующие цели:
+\begin{itemize}
+  %{ for item in РесурсыИнтернетСписок %}
+  \item <= item => %{ endfor %}
+\end{itemize}
+%{ else %}
+Целью освоения дициплины <<<= дисциплина =>>> является: <= АннотацияЦель[0] =>.
+%{ endif %}
 
 
 \subsection{Перечень планируемых результатов обучения по дисциплине, соотнесенных с планируемыми результатами освоения образовательной программы.}
@@ -214,12 +207,12 @@
 \centering
 Планируемые результаты освоения программы (содержание и коды компетенций) & 
 \centering\arraybackslash
-Планируемые результаты обучения по дисциплине
+Планируемые результаты обучения по~дисциплине
 \\
 \hline
 %{ for code in Компетенцииs %}
-<= code => : <= Компетенцииs[code] =>%{ if not loop.last %}, %{ endif %}
-%{endfor %}
+<= code => : <= Компетенцииs[code] =>%{ if not loop.last %}, \par 
+%{ endif %}%{endfor %}
 & \\
 \hline
 \end{longtable}
@@ -240,7 +233,7 @@
   \centering на которые опирается содержание дисциплины & 
   \centering\arraybackslash для которых содержание дисциплины выступает опорой
   \\ \hline
-  <=disciplinecode=> & <= discipline => & <= basedon => & <= baseof =>
+  <=код=> & <= дисциплина => & <= basedon => & <= baseof =>
   \\ \hline
   \end{tabular}
   \end{table}
@@ -257,7 +250,7 @@
 \caption{Выписка из учебного плана} 
 \begin{tabular}{|p{9cm}|c|c|}
 \hline
-Код и название дисциплины по учебному плану & \multicolumn{2}{p{6cm}|}{<= disciplinecode =>\ -- <=discipline => }\\
+Код и название дисциплины по учебному плану & \multicolumn{2}{p{6cm}|}{<= код =>\ -- <=дисциплина => }\\
 \hline
 Курс изучения &\multicolumn{2}{c|}{ <= Курсs => }\\
 \hline
@@ -267,7 +260,7 @@
 \hline
 Курсовой проект / курсовая работа (указать вид работы при наличии в учебном плане), семестр выполнения &\multicolumn{2}{c|}{ }\\
 \hline
-Трудоемкость (в ЗЕТ) &\multicolumn{2}{c|}{ <= ЗЕТs => (<= zet =>) }\\
+Трудоемкость (в ЗЕТ) &\multicolumn{2}{c|}{ <= ЗЕТs => (<= ЗЕТ =>) }\\
 \hline
 {\bf Трудоемкость (в часах)} (сумма строк №1,2,3), в~т.ч.:& \multicolumn{2}{c|}{<= ВсегоЧасs =>}\\
 \hline
@@ -374,18 +367,18 @@ a & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28
 \section{Перечень ресурсов информационно-телекоммуникационной сети «Интернет» (далее сеть-Интернет), необходимых для освоения дисциплины}
 \begin{enumerate}
   %{ for item in РесурсыИнтернетСписок %}
-  \item <= item[0] => 
+  \item <= item => 
   %{ endfor %}
 \end{enumerate}
 
 \newpage
 \section{Описание материально-технической базы, необходимой для осуществления образовательного процесса по дисциплине}
   %{ for item in МатериальнаяБазаСписок %}
-  %{ if item[0] == 'complab' %}
+  %{ if item == 'complab' %}
        Для проведения лекционных занятий требуется аудитория, оборудованная доской,  мультимедийным проектором с экраном. 
        Для проведения лабораторных занятий требуется компьютерный класс с подключением к интернету.
   %{ else %}
-       \par <= item[0] => 
+       \par <= item => 
   %{ endif %}
   %{ endfor %}
 
@@ -398,7 +391,7 @@ a & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28
 При осуществлении образовательного процесса по дисциплине используются следующие информационные технологии:
 \begin{itemize}[nolistsep]
   %{ for item in ИнформационныеТехнологииИнфтех %}
-\item <= item[0] =>
+\item <= item =>
   %{ endfor %}
 \end{itemize}
 
@@ -406,7 +399,7 @@ a & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28
 При осуществлении образовательного процесса по дисциплине используются следующее программное обеспечение:
 \begin{itemize}[nolistsep]
   %{ for item in ИнформационныеТехнологииСофт %}
-\item <= item[0] =>
+\item <= item =>
   %{ endfor %}
 \end{itemize}
 
@@ -415,7 +408,7 @@ a & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28
 При осуществлении образовательного процесса по дисциплине используются следующие информационные справочные системы:
 \begin{itemize}[nolistsep]
   %{ for item in ИнформационныеТехнологииСправ %}
-\item <= item[0] =>
+\item <= item =>
   %{ endfor %}
 \end{itemize}
 %{ endif %}
@@ -423,7 +416,7 @@ a & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28
 \newpage
 \begin{center}
 \section*{ЛИСТ АКТУАЛИЗАЦИИ РАБОЧЕЙ ПРОГРАММЫ ДИСЦИПЛИНЫ}
-<= disciplinecode =>\ --- <= discipline => 
+<= код =>\ --- <= дисциплина => 
 \end{center}
 
   \noindent

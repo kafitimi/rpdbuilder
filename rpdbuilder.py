@@ -1,5 +1,5 @@
-
 import configparser, argparse
+from datetime import datetime
 from xml.etree import ElementTree as XMLTree
 from os.path import abspath, splitext, split as splitpath
 from jinja2 import Environment as Jinja2Renderer, FileSystemLoader
@@ -14,9 +14,12 @@ def main():
     for filename in args.filenames:
         print('FILE ' + filename + ':')
         ini = load_ini(filename) 
-        planfile = ini['planfile'] if 'planfile' in ini else args.plan
-        context = load_discipline_data_from_xml(planfile, ini.get('disciplinecode'), ini.get('discipline'))
-        context.update({k: v for k,v in ini.items() if v})
+        planfile = ini.get('план', args.plan)
+        context = discipline_from_xml(planfile, ini.get('код'), ini.get('дисциплина'))
+        context.update(ini)
+        if 'год' not in context:
+            from datetime import datetime
+            context['год'] = str(datetime.now().year)
         produce_tex(template, filename, context, compile=args.compile)
 
 
@@ -24,10 +27,12 @@ def parse_args():
     """настройка и получение аргументов командной строки
     """
     argp = argparse.ArgumentParser(description='скомпилировать РПД из данных в указанном ini файле и шаблоне')
-    argp.add_argument('filenames', metavar='filename', default=['oop.ini'], type=str, nargs='*', help='ini-файл с данными РПД')
+    
+    argp.add_argument('filenames', metavar='filename', type=str, nargs='+', help='ini-файл с данными РПД')
     argp.add_argument('-t', '--template', default='template.tex', help='файл шаблона (по умолчанию: template.tex)')
-    argp.add_argument('-p', '--plan', metavar='PLANFILE', help='XML-файл РУП (по умолчанию: G09030101_16-1ИВТ.plm.xml)')
+    argp.add_argument('-p', '--plan', default='09030101_16-4ИВТ.plm.xml', metavar='PLANFILE', help='XML-файл РУП (по умолчанию: 09030101_16-4ИВТ.plm.xml)')
     argp.add_argument('-c', '--compile', action='store_true', default=False, help='компилировать latex-файлы в PDF (по умолчанию: нет)')
+    
     return argp.parse_args()
 
 
@@ -45,23 +50,39 @@ def get_jinja_tex_template(template_filename : str):
 
 
 def load_ini(filename)-> dict:
-    """читает .INI-файл с данными
+    """читает .INI-файл с данными, строит словарь, в котором
+       для каждой секции типа
+           [Информационные технологии]
+           софт = язык Python версии 3 и новее;
+                  среда разработки JetBrains PyCharm;
+                  среда разработки Visual Studio.
+       создаются пары ключ-значение вида
+       ИнформационныеТехнологииСофт:['язык Python версии 3 и новее;', 'среда разработки JetBrains PyCharm;', 'среда разработки Visual Studio.']
     """
-    parser = configparser.ConfigParser(empty_lines_in_values=False)
     f = open(filename, encoding='utf-8')
+    parser = configparser.ConfigParser(empty_lines_in_values=False)
     parser.read_file(f)
     f.close()
-    res = {k: parser['Заголовки'][k] for k in parser['Заголовки']}
+
+    res = {}
     for section in parser:
-        if section in ('DEFAULT', 'Заголовки'): continue
-        secname = ''.join(map(str.capitalize, section.split()))
         sec = parser[section]
-        res.update({secname+key.capitalize(): [row.split('|') for row in sec[key].split('\n')] 
-                                               for key in sec})
-    return res 
+        if section in ('DEFAULT', 'Заголовки'): 
+            secdict = dict(sec)
+        else:
+            secname = CamelCase(section)
+            secdict = {}
+            for key, val in sec.items():
+                inikey = secname + CamelCase(key)
+                lines = val.split('\n')
+                if '|' in val:
+                    lines = [l.split('|') for l in lines]
+                secdict[inikey] = lines
+        res.update(secdict)
+    return {k:v for k,v in res.items() if v}
         
 
-def load_discipline_data_from_xml(planfile: str, disc_code : str, disc_name : str) -> dict:
+def discipline_from_xml(planfile: str, disc_code : str, disc_name : str) -> dict:
     """Находит в XML-файле учебного плана информациою о данной дисциплине
     """ 
     d = {}
@@ -78,13 +99,12 @@ def load_discipline_data_from_xml(planfile: str, disc_code : str, disc_name : st
         except:
             raise KeyError('Discipline {} not found in plan file {}'.format(disc_name, planfile))
 
-
     # где что искать в XML-фалйе плана
     plan_finder = [
-        ('plancode',   './Титул',                                       None,      'ПоследнийШифр'),
-        ('planname',   './Титул/Специальности/Специальность[@Ном="1"]', None,      'Название'),
+        ('plancode',    './Титул',                                       None,      'ПоследнийШифр'),
+        ('planname',    './Титул/Специальности/Специальность[@Ном="1"]', None,      'Название'),
         ('level',       './Титул/Квалификации/Квалификация[@Ном="1"]',   None,      'Название'),
-        ('discipline',  './СтрокиПлана/Строка[@НовИдДисциплины="{}"]',   disc_code, 'Дис'),
+        ('дисциплина',  './СтрокиПлана/Строка[@НовИдДисциплины="{}"]',   disc_code, 'Дис'),
         ('disc',        './СтрокиПлана/Строка[@НовИдДисциплины="{}"]',   disc_code, None),
         ('competences', './СтрокиПлана/Строка[@НовИдДисциплины="{}"]',   disc_code, 'КомпетенцииКоды'),
     ]
@@ -99,7 +119,7 @@ def load_discipline_data_from_xml(planfile: str, disc_code : str, disc_name : st
         if type(d[key]) == str:
             d[key] = d[key].strip().replace('  ', ' ')
 
-    print(' Found discipline {}-{} ({})'.format(disc_code, d['discipline'], d['competences']) )
+    print(' Found discipline {}-{} ({})'.format(disc_code, d['дисциплина'], d['competences']) )
 
     semesters = d['disc'].findall('./Сем')
     d.update(parse_semester_data(semesters))
@@ -107,7 +127,7 @@ def load_discipline_data_from_xml(planfile: str, disc_code : str, disc_name : st
     competences = p.findall('./Компетенции')[0]
     d['Компетенцииs'] = expand_competence_list(d['competences'], competences)
 
-    d['zet'] = sum(map(int, d['ЗЕТ']))
+    d['ЗЕТ'] = sum(map(int, d['ЗЕТ']))
     d['planname'] = d['planname'].replace('Направление:', '').strip()
     d['level'] = 'бакалавриата' if d['level']=='бакалавр' else 'магистратуры'
     del d['disc']
@@ -157,9 +177,9 @@ def parse_semester_data(semesters : list) -> dict:
 def calc_hour_totals(d : dict):
     """ подсчитывает суммарные часы ВсегоЧас и ВсегоАудЧас в каждом семестре из
         словаря, в котором они по видам занятий уже есть""" 
-    for aud in (True, False):
-        h_types = ('Лек', 'Пр', 'Лаб') if aud else ('Лек', 'Пр', 'Лаб', 'КСР',  'СРС')
-        totals_name = 'ВсегоАудЧас' if aud else 'ВсегоЧас'
+    for only_aud in (True, False):
+        totals_name = 'ВсегоАудЧас' if only_aud else 'ВсегоЧас'
+        h_types = ('Лек', 'Пр', 'Лаб') if only_aud else ('Лек', 'Пр', 'Лаб', 'КСР',  'СРС')
         semester_count = len(d['Лек'])
         d[totals_name] = [0] * semester_count
         for sem in range(semester_count):
@@ -192,6 +212,9 @@ def produce_tex(template, filename, context, compile=True):
         sleep(0.5)
         execute(['xelatex', '--synctex=1', tex_file ])
 
+
+def CamelCase(s: str) -> str:
+    return ''.join(map(str.capitalize, s.split()))
 
 if __name__ == '__main__':
     main()
