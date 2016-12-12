@@ -2,19 +2,18 @@
 \usepackage[hmargin={30mm, 17mm}, vmargin={20mm,20mm}, nohead]{geometry}
 \usepackage{polyglossia, enumitem, array, multirow, tabularx, rotating, indentfirst, caption, float, ulem, titlesec, longtable }%<= additionalpackages =>}
 \setdefaultlanguage{russian} % выбор основного языка (для переносов)
-\defaultfontfeatures{Ligatures=TeX} % нужен для того, чтобы работали стандартные сочетания символов ---, -- << >> и т.п.
-
 % шрифты 
-\setmainfont{Times New Roman} 
-\setmonofont[Scale=0.9]{Consolas}
-\setsansfont{Trebuchet MS}
+  \defaultfontfeatures{Ligatures=TeX} % нужен для того, чтобы работали стандартные сочетания символов ---, -- << >> и т.п.
+  \setmainfont{Times New Roman} 
+  \setmonofont[Scale=0.9]{Consolas}
+  \setsansfont{Trebuchet MS}
 
 %{ if math=='1' %}
-\usepackage[vargreek-shape=unicode]{unicode-math}
-\setmathfont{latinmodern-math.otf}
-\setmathfont[range=\mathit/{latin,Latin}]{Times New Roman-Italic}
-\setmathfont[range=\mathit/{greek,Greek}]{Times New Roman}
-\setmathfont[range=\mathup]{Times New Roman}
+  \usepackage[vargreek-shape=unicode]{unicode-math}
+  \setmathfont{latinmodern-math.otf}
+  \setmathfont[range=\mathit/{latin,Latin}]{Times New Roman-Italic}
+  \setmathfont[range=\mathit/{greek,Greek}]{Times New Roman}
+  \setmathfont[range=\mathup]{Times New Roman}
 %{ endif %}
 
 % pdf metadata
@@ -27,11 +26,11 @@
 {hyperref}
 
 % формат заголовков, подписей и списков
-\titleformat*{\section}{\large\bfseries\centering}
-\titleformat*{\subsection}{\bfseries}
-\captionsetup[table]{singlelinecheck=off, font=small, labelsep=period, textfont=it, format=hang, justification=raggedleft}
-\setlist[enumerate,1]{nolistsep,labelindent=0pt,leftmargin=\parindent}
-\setlist[itemize,1]{nolistsep,labelindent=20pt,leftmargin=*,label=--}
+  \titleformat*{\section}{\large\bfseries\centering}
+  \titleformat*{\subsection}{\bfseries}
+  \captionsetup[table]{singlelinecheck=off, font=small, labelsep=period, textfont=it, format=hang, justification=raggedleft}
+  \setlist[enumerate,1]{nolistsep,labelindent=0pt,leftmargin=\parindent}
+  \setlist[itemize,1]{nolistsep,labelindent=20pt,leftmargin=*,label=--}
 
 \makeatletter
 
@@ -49,10 +48,10 @@
 }
 
 %%% Перенос составных слов
-\XeTeXinterchartokenstate=1
-\XeTeXcharclass `\- 24
-\XeTeXinterchartoks 24 0 = {\hskip\z@skip}
-\XeTeXinterchartoks 0 24 = {\nobreak}
+  \XeTeXinterchartokenstate=1
+  \XeTeXcharclass `\- 24
+  \XeTeXinterchartoks 24 0 = {\hskip\z@skip}
+  \XeTeXinterchartoks 0 24 = {\nobreak}
 
 \makeatother
 
@@ -63,27 +62,6 @@
 }
 
 \newcommand\rotleft{\rotatebox{90}}
-
-\newenvironment{contentstable}{
-\begin{table}[H]
-\caption{Структура и содержание дисциплины}
-\begin{tabular}{|l|l|>{\raggedright}p{25ex}|*{5}{r|}p{8ex}|p{9ex}|}
-\hline
-\multicolumn{1}{|l|}     {~\raisebox{-12pt}[0pt][0pt]{\multirow{2}{*}{\rotleft{\raisebox{-4pt}[0pt][0pt]{№ п/п}}}}} &
-\multicolumn{1}{l|}      {~\raisebox{-5pt}[0pt][0pt]{\multirow{2}{*}{\rotleft{Недели семестра}}}} &
-\multicolumn{1}{c|}      {\multirow{2}{*}[-5ex]{\parbox{25ex}{\centering ~\linebreak Раздел дисциплины, \linebreak содержание}}} & 
-\multicolumn{4}{p{17ex}|}{\centering Виды учебной работы, трудоем- кость (в~часах)} &
-\multicolumn{1}{c|}      {~~\raisebox{18pt}[0pt][0pt]{\multirow{2}{*}{\rotleft{\parbox{25ex}{\centering КСР (в часах)}}}}} &
-\multicolumn{1}{c|}      {\raisebox{25pt}[0pt]     [0pt]{\multirow{2}{*}{\rotleft{\parbox{28ex}{\centering Применяемые образова\-тельные (интер\-активные) технологии*}}}}} &
-\multicolumn{1}{c|}      {~~\raisebox{12pt}{\multirow{2}{*}{\rotleft{\parbox{22ex}{\centering Форма текущего контроля}}}}} \\
-\cline{4-7}
- & & &
-~\raisebox{-2pt}{\rotleft{Лекций~} }& 
-~\raisebox{-2pt}{\rotleft{Практич.~}} &
-~\raisebox{-2pt}{\rotleft{Лаборат.~}} &
-~\raisebox{-2pt}{\rotleft{СРС~}} &
- & & \\
-\hline}{\\ \hline\end{tabular}\end{table}}
 
 
 \newenvironment{srstable}{
@@ -133,7 +111,7 @@
 Министерство образования и науки Российской Федерации \\
 Федеральное государственное автономное образовательное \\
 учреждение высшего образования\\
-«СЕВЕРО-ВОСТОЧНЫЙ ФЕДЕРАЛЬНЫЙ УНИВЕРСИТЕТ ИМЕНИ М.\,К.~АММОСОВА» \\
+«СЕВЕРО-ВОСТОЧНЫЙ ФЕДЕРАЛЬНЫЙ УНИВЕРСИТЕТ \\имени М.\,К.~АММОСОВА» \\
 Институт математики и информатики \\
 Кафедра информационных технологий
 
@@ -182,40 +160,65 @@
 
 \begin{center}
 \section{АННОТАЦИЯ}
-{\bf к рабочей программе дисциплины\\
-<= код =>\ -- <= дисциплина =>} \\
-Трудоемкость \uline{~<= ЗЕТ =>~} з.~е.
+  {\bf к рабочей программе дисциплины\\
+  <= код =>\ -- <= дисциплина =>} \\
+  Трудоемкость \uline{~<= ЗЕТ =>~} з.~е.
 \end{center}
 
 
 \subsection{Цель освоения и краткое содержание дисциплины}
-%{ if АннотацияЦели %}
-Преподавание дициплины <<<= дисциплина =>>> имеет следующие цели:
-\begin{itemize}
-  %{ for item in РесурсыИнтернетСписок %}
-  \item <= item => %{ endfor %}
-\end{itemize}
-%{ else %}
-Целью освоения дициплины <<<= дисциплина =>>> является: <= АннотацияЦель[0] =>.
-%{ endif %}
+  %{ if АннотацияЦели %}
+  Изучение дисциплины <<<= дисциплина =>>> имеет следующие цели:
+  \begin{itemize}%{ for item in РесурсыИнтернетСписок %}
+    \item <= item => %{ endfor %}
+  \end{itemize}
+  %{ else %}
+  Целью изучение дициплины <<<= дисциплина =>>> является: <= АннотацияЦель[0] =>.
+  %{ endif %}
 
 
 \subsection{Перечень планируемых результатов обучения по дисциплине, соотнесенных с планируемыми результатами освоения образовательной программы.}
-\begin{longtable}{|p{8cm}|p{8cm}|}
-\caption{Перечень планируемых результатов обучения}\\
-\hline
-\centering
-Планируемые результаты освоения программы (содержание и коды компетенций) & 
-\centering\arraybackslash
-Планируемые результаты обучения по~дисциплине
-\\
-\hline
-%{ for code in Компетенцииs %}
-<= code => : <= Компетенцииs[code] =>%{ if not loop.last %}, \par 
-%{ endif %}%{endfor %}
-& \\
-\hline
-\end{longtable}
+
+  \begin{longtable}{|p{70mm}|p{84mm}|}
+  \caption{Перечень планируемых результатов обучения}\\
+  \hline
+  \centering
+  Планируемые результаты освоения программы (содержание и коды компетенций) & 
+  \centering\arraybackslash
+  Планируемые результаты обучения по~дисциплине
+  \\
+  \hline
+  %{ for code in Компетенцииs %}
+  <= code => : <= Компетенцииs[code] =>%{ if not loop.last %}, \par 
+  %{ endif %}%{endfor %}
+  & 
+  В результате изучения дисциплины обучающийся должен:\newline
+  \emph{знать:}%{ if АннотацияЗнать|length > 1 %}
+  \begin{itemize}%{ for item in АннотацияЗнать %}
+    \item <= item => %{ endfor %}
+  \end{itemize}
+  %{ else %}
+  <= АннотацияЗнать[0] =>
+  %{ endif %}
+
+  \emph{уметь:}%{ if АннотацияУметь|length > 1 %}
+  \begin{itemize}%{ for item in АннотацияУметь %}
+    \item <= item => %{ endfor %}
+  \end{itemize}
+  %{ else %}
+  <= АннотацияУметь[0] =>
+  %{ endif %}
+
+  \emph{владеть навыками:}%{ if АннотацияВладетьнавыками|length > 1 %}
+  \begin{itemize}%{ for item in АннотацияВладетьнавыками %}
+    \item <= item => %{ endfor %}
+  \end{itemize}
+  %{ else %}
+  <= АннотацияВладетьнавыками[0] =>
+  %{ endif %}
+  \\
+  \hline
+  \end{longtable}
 
 
 \subsection{Место дисциплины в~структуре образовательной программы}
@@ -233,14 +236,23 @@
   \centering на которые опирается содержание дисциплины & 
   \centering\arraybackslash для которых содержание дисциплины выступает опорой
   \\ \hline
-  <=код=> & <= дисциплина => & <= basedon => & <= baseof =>
+  <=код=> & <= дисциплина => 
+  & 
+  %{ for item in АннотацияОпирается %}
+  <= item =>%{ endfor %} 
+  & 
+  %{ for item in АннотацияОпорадля %}
+  <= item =>%{ endfor %} 
   \\ \hline
   \end{tabular}
   \end{table}
 
-\subsection{Язык преподавания} 
 
+\subsection{Язык преподавания} 
   Русский.
+  
+
+
 
 \newpage
 
@@ -262,9 +274,9 @@
 \hline
 Трудоемкость (в ЗЕТ) &\multicolumn{2}{c|}{ <= ЗЕТs => (<= ЗЕТ =>) }\\
 \hline
-{\bf Трудоемкость (в часах)} (сумма строк №1,2,3), в~т.ч.:& \multicolumn{2}{c|}{<= ВсегоЧасs =>}\\
+{\bf Трудоемкость (в часах)} (сумма строк №1, 2, 3), в~т.~ч.:& \multicolumn{2}{c|}{<= ВсегоЧасs =>}\\
 \hline
-№\,1. Контактная работа обучающихся с преподавателем (КР), в часах:
+\textbf{№\,1. Контактная работа обучающихся с преподавателем (КР),} в часах:
 & \multicolumn{1}{p{3cm}|}{\centering Объем аудиторной работы, в часаx}
 & \multicolumn{1}{p{3cm}|}{\centering\arraybackslash В~т.\,ч. с~применением ДОТ или ЭО, в~часах}\\
 \hline  
@@ -289,16 +301,18 @@
 \end{tabular}
 \end{table}
 
+
+
 \newpage
 \section{Содержание дисциплины, структурированное по~темам с~указанием отведенного на~них количества академических часов и~видов учебных занятий}
 \subsection{Распределение часов по~темам и~видам учебных занятий}
-\begin{longtable}{|p{59mm}|c|c|c|c|c|c|c|c|c|c|c|}
-\caption{}\\
+\begin{longtable}{|>{\raggedright\arraybackslash}p{59mm}|c|c|c|c|c|c|c|c|c|c|c|}
+\caption{}
+\\
 \hline
- & 
-     & 
+ & & 
 \multicolumn{9}{c|}{Контактная работа, в часах} & 
-    \\
+\\
 \cline{3-11} 
 \raisebox{18mm}{Тема}&
 \rotleft{Всего часов} &
@@ -311,37 +325,69 @@
 \rotleft{Практикумы} &
 \rotleft{из них с прим-м  ЭО и ДОТ} &
 \rotleft{КСР (консультации)} & 
-\rotleft{Часы СРС}\\
-\hline
-a & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 
+\rotleft{Часы СРС}
 \\
+%{ for row in РаспределениеЧасовСписок %}\hline
+%{ for cell in row %}<= cell =>%{ if not loop.last %} & %{ endif %}%{ endfor %} \\ 
+%{ endfor %}
 \hline
 \end{longtable}
 
-
-
 \subsection{Содержание тем программы дисциплины} 
+
+%{ for row in РаспределениеЧасовСписок %}%{ if not loop.last %}
+\textbf{<= row[0] =>}\\
+<= СодержаниеТем[loop.index0] =>
+
+%{ endif %}%{ endfor %} 
+
+\subsection{Формы и методы проведения занятий, применяемые учебные технологии}
+%{ for row in ФормыИТехнологииЗанятийТекст %}<= row =>%{ endfor %}
+
 
 
 \section{Перечень учебно-методического обеспечения для самостоятельной работы обучающихся по дисциплине}
-\begin{longtable}{|l|p{40mm}|p{54mm}|c|p{30mm}|}
+\begin{longtable}{|l|>{\raggedright\arraybackslash}p{40mm}|>{\raggedright\arraybackslash}p{54mm}|c|>{\raggedright\arraybackslash}p{30mm}|}
 \hline
 № & \centering Наименование раздела (темы) дисциплины & 
 \centering Вид СРС & \multicolumn{1}{p{14mm}|}{\centering Трудо\-емкость (в часах)} & \centering\arraybackslash Формы и методы контроля\\
+%{ for row in СрсТабл %}\hline
+%{ for cell in row %}<= cell =>%{ if not loop.last %} & %{ endif %}%{ endfor %} \\ 
+%{ endfor %}
 \hline
 \end{longtable}
 
 
 \section{Методические указания для обучающихся по освоению дисциплины}
+%{ for row in МетодическиеУказанияТекст %}<= row =>
+%{ endfor %}
+
+
+\subsubsection*{Рейтинговый регламент по дисциплине}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{110mm}|r|r|}
+\hline
+\centering\arraybackslash Вид выполняемой учебной работы (контролирующие мероприятия) & 
+\multicolumn{1}{p{20mm}|}{\centering\arraybackslash Количество баллов (min)} & 
+\multicolumn{1}{p{20mm}|}{\centering\arraybackslash Количество баллов (max)} \\
+%{ for row in РейтинговыйРегламентТабл %}\hline
+%{ for cell in row %}<= cell =>%{ if not loop.last %} & %{ endif %}%{ endfor %} \\ 
+%{ endfor %}
+\hline
+\end{longtable}
+
 
 \section{Фонд оценочных средств для проведения промежуточной аттестации обучающихся по дисциплине}
+
+\subsection{Показатели, критерии и шкала оценивания}
+\subsection{Типовые контрольные задания (вопросы) для промежуточной аттестации}
+\subsection{Методические материалы, определяющие процедуры оценивания}
+
 
 \newpage
 \section{Перечень основной и дополнительной учебной литературы, необходимой для освоения дисциплины}
 
-  \begin{table}[H]
-  \caption*{Перечень литературы}
   \begin{longtable}{|l|p{7cm}|p{18mm}|c|p{32mm}|}
+  \caption*{Перечень литературы}\\
   \hline
   № & 
   \centering\small\arraybackslash Автор, название, место издания, издательство, год издания учебной литературы, вид и характеристика иных информационных ресурсов &
@@ -362,7 +408,6 @@ a & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28
   \hline
   %{ endfor %}
   \end{longtable}
-  \end{table}
   
 \section{Перечень ресурсов информационно-телекоммуникационной сети «Интернет» (далее сеть-Интернет), необходимых для освоения дисциплины}
 \begin{enumerate}

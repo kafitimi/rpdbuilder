@@ -6,6 +6,8 @@ from jinja2 import Environment as Jinja2Renderer, FileSystemLoader
 from collections import OrderedDict
 from subprocess import check_call as execute
 from time import sleep
+from pprint import pprint
+from sys import exit
 
 def main():
     args = parse_args()
@@ -20,6 +22,8 @@ def main():
         if 'год' not in context:
             from datetime import datetime
             context['год'] = str(datetime.now().year)
+        distribute_hours(context)
+        pprint(context, stream=open('context.txt', 'w', encoding='utf-8'), width=500)
         produce_tex(template, filename, context, compile=args.compile)
 
 
@@ -30,7 +34,7 @@ def parse_args():
     
     argp.add_argument('filenames', metavar='filename', type=str, nargs='+', help='ini-файл с данными РПД')
     argp.add_argument('-t', '--template', default='template.tex', help='файл шаблона (по умолчанию: template.tex)')
-    argp.add_argument('-p', '--plan', default='09030101_16-4ИВТ.plm.xml', metavar='PLANFILE', help='XML-файл РУП (по умолчанию: 09030101_16-4ИВТ.plm.xml)')
+    argp.add_argument('-p', '--plan', default='09040101_16-1ИВТ.plm.xml', metavar='PLANFILE', help='XML-файл РУП (по умолчанию: 09040101_16-1ИВТ.plm.xml)')
     argp.add_argument('-c', '--compile', action='store_true', default=False, help='компилировать latex-файлы в PDF (по умолчанию: нет)')
     
     return argp.parse_args()
@@ -69,6 +73,8 @@ def load_ini(filename)-> dict:
         sec = parser[section]
         if section in ('DEFAULT', 'Заголовки'): 
             secdict = dict(sec)
+        elif section == 'Содержание тем':
+            secdict = {'СодержаниеТем': [v for k,v in sec.items()]}
         else:
             secname = CamelCase(section)
             secdict = {}
@@ -146,7 +152,7 @@ def parse_semester_data(semesters : list) -> dict:
        d['Лабs'] = '34 / 38'.
     """
     d = {}
-    hours = ('Лек', 'Пр', 'Лаб', 'КСР',  'СРС', 'ЧасЭкз',)
+    hours = ('Лек', 'Пр', 'Лаб', 'КСР',  'СРС', 'ЧасЭкз', 'ИнтЛек', 'ИнтПр', 'ИнтЛаб')
     controls = ('Зач', 'Экз')
     sems = ('Ном',  'ЗЕТ')
 
@@ -171,6 +177,9 @@ def parse_semester_data(semesters : list) -> dict:
     d['формаконтроля'] = [d['Зач'][i] + d['Экз'][i] for i,s in enumerate(semesters)]
     d['формаконтроляs'] = ' / '.join(d['формаконтроля']).replace('зачетэкзамен', 'зачет+экзамен')
     
+    for key in hours:
+        d[key] = [int(h) if h.strip() else 0 for h in d[key]]
+
     return d
 
 
@@ -179,7 +188,7 @@ def calc_hour_totals(d : dict):
         словаря, в котором они по видам занятий уже есть""" 
     for only_aud in (True, False):
         totals_name = 'ВсегоАудЧас' if only_aud else 'ВсегоЧас'
-        h_types = ('Лек', 'Пр', 'Лаб') if only_aud else ('Лек', 'Пр', 'Лаб', 'КСР',  'СРС')
+        h_types = ('Лек', 'Пр', 'Лаб', 'КСР') if only_aud else ('Лек', 'Пр', 'Лаб', 'КСР',  'СРС')
         semester_count = len(d['Лек'])
         d[totals_name] = [0] * semester_count
         for sem in range(semester_count):
@@ -187,6 +196,73 @@ def calc_hour_totals(d : dict):
                 if d[h_type][sem]:
                     d[totals_name][sem] += int(d[h_type][sem])
         d[totals_name + 's'] = ' / '.join(map(str, d[totals_name]))
+
+
+def distribute_hours(d: dict):
+    hours = ('Лек', 'ИнтЛек', 'Пр', 'ИнтПр', 'Лаб', 'ИнтЛаб', 'Практикум', 'ИнтПрактикум' , 'КСР',  'СРС')
+    totals = [sum(d.get(h, [0])) for h in hours]
+    pprint(totals, width=120)
+
+    vals = d['РаспределениеЧасовСписок']
+    M, N  = len(vals), len(hours)
+    
+    # парсим значения из пользовательской таблицы в INI-файле
+    coef = [[1]*N for i in range(M)]
+    absv = [[0]*N for i in range(M)]
+    for i in range(M):
+        for j in range(min(N, len(vals[i])-2)):
+            try:
+                v = vals[i][2+j].strip()
+                if not v: continue
+                arr, convert = (coef, lambda s: float(s[:-1])) if '*' in v else (absv, int)
+                arr[i][j] = convert(v)
+            except ValueError:
+                print("""ОШИБКА в строке {} таблицы распределения часов: '{}
+                         элементы должны быть целыми числами или множителями вида '2.5*'""".format(i+1, v))
+                exit(-1)
+
+    # раскидываем абсолютные часы
+    for i in range(M):
+        for j in range(N):
+            totals[j] -= absv[i][j]
+            if totals[j] < 0:
+                h = hours[j]
+                print("ОШИБКА в таблице распределения часов: сумма часов\n"+
+                      "за {} превышает значение {} в учебном плане""".format(h, sum(d.get(h, [0]))))
+                exit(-1)
+
+    # раскидываем оставшиеся часы с учетом коэффициентоа
+    for j in range(N):
+        N = totals[j]
+        coefs = [coef[i][j] if not absv[i][j] else 0 for i in range(M)]
+
+        # распределить N часов пропорционально coefs в массив absv[*][j]
+        s = sum(coefs)
+        k = (1.*N) / s
+        coefs = [k*c for c in coefs]
+        priority = []
+        for i in range(M):
+            if not absv[i][j]:
+                hrs = int(coefs[i])
+                absv[i][j] = hrs
+                N -= hrs
+                priority.append((i, coefs[i] - hrs + (1 if not hrs else 0)))
+
+        if N > 0:
+            priority.sort(key=lambda pair: pair[1] , reverse=True)
+            for pos, diff in priority:
+                absv[pos][j] += 1
+                N -= 1
+                if N==0: break
+
+    for i in range(M):
+        absv[i].insert(0, sum(absv[i]))
+        absv[i].insert(0, vals[i][0])
+
+    totals = [sum(d.get(h, [0])) for h in hours]
+    absv.append(['ВСЕГО ЧАСОВ', sum(totals[::2])+totals[-1]] + totals)
+    
+    d['РаспределениеЧасовСписок'] = absv
 
 
 def expand_competence_list(comp_string : str, plan_competences : list):
