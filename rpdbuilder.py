@@ -22,7 +22,8 @@ def main():
         if 'год' not in context:
             from datetime import datetime
             context['год'] = str(datetime.now().year)
-        distribute_hours(context)
+        if 'РаспределениеЧасовСписок' in context:
+            distribute_hours(context)
         pprint(context, stream=open('context.txt', 'w', encoding='utf-8'), width=500)
         produce_tex(template, filename, context, compile=args.compile)
 
@@ -75,6 +76,8 @@ def load_ini(filename)-> dict:
             secdict = dict(sec)
         elif section == 'Содержание тем':
             secdict = {'СодержаниеТем': [v for k,v in sec.items()]}
+        elif section in ('Показатели оценивания','Типовые задания'):
+            secdict = buildTable(parser, section)
         else:
             secname = CamelCase(section)
             secdict = {}
@@ -127,12 +130,11 @@ def discipline_from_xml(planfile: str, disc_code : str, disc_name : str) -> dict
 
     print(' Found discipline {}-{} ({})'.format(disc_code, d['дисциплина'], d['competences']) )
 
-    semesters = d['disc'].findall('./Сем')
-    d.update(parse_semester_data(semesters))
+    semesters = d['disc'].findall('./Сем[@ЗЕТ]')  # получить список всех семестров дициплины, в которых расписаны ЗЕТ 
+    d.update(parse_semester_data(semesters))      # разобрать часы
     
     competences = p.findall('./Компетенции')[0]
     d['Компетенцииs'] = expand_competence_list(d['competences'], competences)
-
     d['ЗЕТ'] = sum(map(int, d['ЗЕТ']))
     d['planname'] = d['planname'].replace('Направление:', '').strip()
     d['level'] = 'бакалавриата' if d['level']=='бакалавр' else 'магистратуры'
@@ -291,6 +293,34 @@ def produce_tex(template, filename, context, compile=True):
 
 def CamelCase(s: str) -> str:
     return ''.join(map(str.capitalize, s.split()))
+
+
+def split_digits(s: str) -> (str, int):
+    i = -1
+    while s[i] in '0123456789':
+        i -=1
+    return s[:i+1], int(s[i+1:])
+
+
+def buildTable(parser, section):
+    #import pdb; pdb.set_trace()
+    
+    s = parser[section]
+    keys = []
+    maxnum = 0
+    for k in s:
+        key, num = split_digits(k)
+        if key not in keys:
+            keys.append(key)
+        maxnum = max(num, maxnum)
+    table = [['']*len(keys) for _ in range(maxnum)]
+    
+    for k,v in s.items():
+        key, num = split_digits(k)
+        table[num-1][keys.index(key)] = v
+
+    return {CamelCase(section)+'Табл': table}
+
 
 if __name__ == '__main__':
     main()
