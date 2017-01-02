@@ -104,7 +104,7 @@ def discipline_from_xml(planfile: str, disc_code : str, disc_name : str) -> dict
     if not disc_code and disc_name:
         try:
             disc_code = p.findall('./СтрокиПлана/Строка[@Дис="{}"]'.format(disc_name))[0].attrib['НовИдДисциплины']
-            d['disciplinecode'] = disc_code
+            d['код'] = disc_code
         except:
             raise KeyError('Discipline {} not found in plan file {}'.format(disc_name, planfile))
 
@@ -190,7 +190,7 @@ def calc_hour_totals(d : dict):
         словаря, в котором они по видам занятий уже есть""" 
     for only_aud in (True, False):
         totals_name = 'ВсегоАудЧас' if only_aud else 'ВсегоЧас'
-        h_types = ('Лек', 'Пр', 'Лаб', 'КСР') if only_aud else ('Лек', 'Пр', 'Лаб', 'КСР',  'СРС')
+        h_types = ('Лек', 'Пр', 'Лаб', 'КСР') if only_aud else ('Лек', 'Пр', 'Лаб', 'КСР', 'СРС', 'ЧасЭкз')
         semester_count = len(d['Лек'])
         d[totals_name] = [0] * semester_count
         for sem in range(semester_count):
