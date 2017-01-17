@@ -35,7 +35,7 @@ def parse_args():
     
     argp.add_argument('filenames', metavar='filename', type=str, nargs='+', help='ini-файл с данными РПД')
     argp.add_argument('-t', '--template', default='template.tex', help='файл шаблона (по умолчанию: template.tex)')
-    argp.add_argument('-p', '--plan', default='09040101_16-1ИВТ.plm.xml', metavar='PLANFILE', help='XML-файл РУП (по умолчанию: 09040101_16-1ИВТ.plm.xml)')
+    argp.add_argument('-p', '--plan', default='G09040101_16-1ИВТ-.plm.xml', metavar='PLANFILE', help='XML-файл РУП (по умолчанию: 09040101_16-1ИВТ.plm.xml)')
     argp.add_argument('-c', '--compile', action='store_true', default=False, help='компилировать latex-файлы в PDF (по умолчанию: нет)')
     
     return argp.parse_args()
