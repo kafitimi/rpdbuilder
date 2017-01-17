@@ -1,124 +1,70 @@
 \documentclass[a4paper,12pt]{article}
-\usepackage[hmargin={30mm, 17mm}, vmargin={20mm,20mm}, nohead]{geometry}
-\usepackage{polyglossia, enumitem, array, multirow, tabularx, rotating, indentfirst, caption, float, ulem, titlesec, longtable }%}
-\setdefaultlanguage{russian} % выбор основного языка (для переносов)
-\defaultfontfeatures{Ligatures=TeX} % нужен для того, чтобы работали стандартные сочетания символов ---, -- << >> и т.п.
+  \usepackage[hmargin={30mm, 17mm}, vmargin={20mm,20mm}, nohead]{geometry}
+  \usepackage{polyglossia, enumitem, array, longtable, multirow, tabularx, rotating, indentfirst, caption, float, ulem, titlesec }%}
+  \setdefaultlanguage{russian} % выбор основного языка (для переносов)
+  % шрифты 
+  \defaultfontfeatures{Ligatures=TeX} % нужен для того, чтобы работали стандартные сочетания символов ---, -- << >> и т.п.
+  \setmainfont{Times New Roman} 
+  \setmonofont[Scale=0.9]{Consolas}
+  \setsansfont{Trebuchet MS}
 
-% шрифты 
-\setmainfont{Times New Roman} 
-\setmonofont[Scale=0.9]{Consolas}
-\setsansfont{Trebuchet MS}
+  
 
+  % pdf metadata
+  \usepackage[
+    pdfencoding=unicode,
+    pdftitle={Рабочая программа дисциплины Математические основы защиты информации},
+    pdfauthor={составлена }, 
+    bookmarksnumbered=true, 
+      colorlinks=true, linktocpage=true, linkcolor=blue, pdfpagemode=UseOutlines]
+  {hyperref}
 
+  % формат заголовков, подписей и списков
+  \titleformat*{\section}{\large\bfseries\centering}
+  \titleformat*{\subsection}{\bfseries}
+  \captionsetup[table]{singlelinecheck=off, font=small, labelsep=period, textfont=it, format=hang, justification=raggedleft}
+  \setlist[enumerate,1]{nolistsep,labelindent=0pt,leftmargin=\parindent}
+  \setlist[itemize,1]{nolistsep,labelindent=20pt,leftmargin=*,label=--}
 
-% pdf metadata
-\usepackage[
-  pdfencoding=unicode,
-  pdftitle={Рабочая программа дисциплины Математические основы защиты информации},
-  pdfauthor={составлена }, 
-  bookmarksnumbered=true, 
-    colorlinks=true, linktocpage=true, linkcolor=blue, pdfpagemode=UseOutlines]
-{hyperref}
+  \makeatletter
 
+  % заполняет ширину текста полем с подчеркиванием.
+  % #1 - текст слева, #2 - на подчеркивании, #3 - справа, #4 - подпись под подчеркнутым
+  \newcommand{\ulfield}[4]{
+  \noindent
+  \begin{tabularx}{\linewidth}{@{}l@{}X@{}l@{}}
+  #1\if\relax\detokenize{#1}\relax\else\,~\vrule width 0pt\fi 
+  & \uline{\vrule width 0pt\hfill#2\hfill\vrule width 0pt} & 
+  \if\relax\detokenize{#3}\relax\else\vrule width 0pt~\,\fi #3
+  \\
+  & {\scriptsize \vrule width 0pt\hfill#4\hfill\vrule width 0pt}
+  \end{tabularx}
+  }
 
-\titleformat*{\section}{\large\bfseries\centering}
-\titleformat*{\subsection}{\bfseries}
+  %%% Перенос составных слов
+    \XeTeXinterchartokenstate=1
+    \XeTeXcharclass `\- 24
+    \XeTeXinterchartoks 24 0 = {\hskip\z@skip}
+    \XeTeXinterchartoks 0 24 = {\nobreak}
 
-\makeatletter
+  \newcommand\rotleft{\rotatebox{90}}
+  
+  \makeatother
 
-% заполняет ширину текста полем с подчеркиванием.
-% #1 - текст слева, #2 - на подчеркивании, #3 - справа, #4 - подпись под подчеркнутым
-\newcommand{\ulfield}[4]{
-\noindent
-\begin{tabularx}{\linewidth}{@{}l@{}X@{}l@{}}
-#1\if\relax\detokenize{#1}\relax\else\,~\vrule width 0pt\fi 
-& \uline{\vrule width 0pt\hfill#2\hfill\vrule width 0pt} & 
-\if\relax\detokenize{#3}\relax\else\vrule width 0pt~\,\fi #3
-\\
-& {\scriptsize \vrule width 0pt\hfill#4\hfill\vrule width 0pt}
-\end{tabularx}
-}
+  \newcommand{\datefield}[1][]{\if
+  \relax\detokenize{#1}\relax«\uline{\hspace{22pt}}»~\uline{\hspace{90pt}}\,~20\uline{\hspace{20pt}}~г.\else «\uline{\hspace{18pt}}»~\uline{\hspace{60pt}}\,~20\uline{\hspace{18pt}}~г.\fi
+  }
 
-\newcommand{\datefield}[1][]{
-\if\relax\detokenize{#1}\relax%
-«\uline{\hspace{22pt}}»~\uline{\hspace{90pt}}\,~20\uline{\hspace{20pt}}~г.\else
-«\uline{\hspace{18pt}}»~\uline{\hspace{60pt}}\,~20\uline{\hspace{18pt}}~г.\fi
-}
-
-\setlist[enumerate,1]{nolistsep,labelindent=0pt,leftmargin=\parindent}
-\setlist[itemize,1]{nolistsep,labelindent=20pt,leftmargin=*,label=--}
-
-\newcommand\rotleft{\rotatebox{90}}
-
-\captionsetup[table]{singlelinecheck=off, font=small, labelsep=period, textfont=it, format=hang, justification=raggedleft}
-
-
-\newenvironment{contentstable}{
-\begin{table}[H]
-\caption{Структура и содержание дисциплины}
-\begin{tabular}{|l|l|>{\raggedright}p{25ex}|*{5}{r|}p{8ex}|p{9ex}|}
-\hline
-\multicolumn{1}{|l|}     {~\raisebox{-12pt}[0pt][0pt]{\multirow{2}{*}{\rotleft{\raisebox{-4pt}[0pt][0pt]{№ п/п}}}}} &
-\multicolumn{1}{l|}      {~\raisebox{-5pt}[0pt][0pt]{\multirow{2}{*}{\rotleft{Недели семестра}}}} &
-\multicolumn{1}{c|}      {\multirow{2}{*}[-5ex]{\parbox{25ex}{\centering ~\linebreak Раздел дисциплины, \linebreak содержание}}} & 
-\multicolumn{4}{p{17ex}|}{\centering Виды учебной работы, трудоем- кость (в~часах)} &
-\multicolumn{1}{c|}      {~~\raisebox{18pt}[0pt][0pt]{\multirow{2}{*}{\rotleft{\parbox{25ex}{\centering КСР (в часах)}}}}} &
-\multicolumn{1}{c|}      {\raisebox{25pt}[0pt]     [0pt]{\multirow{2}{*}{\rotleft{\parbox{28ex}{\centering Применяемые образова\-тельные (интер\-активные) технологии*}}}}} &
-\multicolumn{1}{c|}      {~~\raisebox{12pt}{\multirow{2}{*}{\rotleft{\parbox{22ex}{\centering Форма текущего контроля}}}}} \\
-\cline{4-7}
- & & &
-~\raisebox{-2pt}{\rotleft{Лекций~} }& 
-~\raisebox{-2pt}{\rotleft{Практич.~}} &
-~\raisebox{-2pt}{\rotleft{Лаборат.~}} &
-~\raisebox{-2pt}{\rotleft{СРС~}} &
- & & \\
-\hline}{\\ \hline\end{tabular}\end{table}}
-
-\newenvironment{srstable}{
-\begin{table}[H]
-    \caption{Содержание самостоятельной работы студентов}
-    \begin{tabular}{|r|p{26ex}|l|r|r|p{9ex}|}
-    \hline
-    № & 
-    \multicolumn{1}{p{37ex}|}{\centering Наименование раздела, темы} & 
-    \multicolumn{1}{c|}{Виды} & 
-    \multicolumn{1}{p{6ex}|}{\centering Объем часов} & 
-    \multicolumn{1}{p{14ex}|}{\centering Используемые ресурсы} & 
-    Контроль\\%
-\hline}{\\ \hline\end{tabular}\end{table}}
-    
-\newenvironment{internettable}{
-    \begin{table}[H]
-    \caption{Интернет-ресурсы}
-    \begin{tabular}{|c|>{\raggedright}p{9em}|>{\raggedright}p{7.7em}|>{\raggedright}p{12ex}|p{24ex}|}
-    \hline
-    № & 
-    \centering Наименование интернет-ресурса & 
-    \centering Автор, разработчики & 
-    \centering Формат документа & 
-    \centering \raisebox{-8pt}{Ссылка (URL)} 
-    \tabularnewline \hline}{\\ \hline\end{tabular}\end{table}}
-
-
-%%% Перенос составных слов
-\XeTeXinterchartokenstate=1
-\XeTeXcharclass `\- 24
-\XeTeXinterchartoks 24 0 = {\hskip\z@skip}
-\XeTeXinterchartoks 0 24 = {\nobreak}
 
 %%% Настройка содержания
-\AtBeginDocument{%
-\makeatletter 
-\def\@tocline#1#2#3#4#5#6#7{\relax
+\AtBeginDocument{
+  \makeatletter 
+  \def\@tocline#1#2#3#4#5#6#7{\relax
   \ifnum #1>\c@tocdepth % then omit
   \else
     \par \addpenalty\@secpenalty\addvspace{#2}%
     \begingroup \hyphenpenalty\@M
-    \@ifempty{#4}{%
-      \@tempdima\csname r@tocindent\number#1\endcsname\relax
-    }{%
-      \@tempdima#4\relax
-    }%
+    \@ifempty{#4}{\@tempdima\csname r@tocindent\number#1\endcsname\relax}{\@tempdima#4\relax}%
     \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
     \rightskip\@pnumwidth plus4em \parfillskip-\@pnumwidth
     #5\leavevmode\hskip-\@tempdima
@@ -129,12 +75,11 @@
     \nobreak
     \endgroup
   \fi}
+  \makeatother
 }%AtBeginDocument
 
-
-
 \begin{document}
-
+\sloppy
 \thispagestyle{empty}
 
 \noindent
@@ -142,7 +87,8 @@
 Министерство образования и науки Российской Федерации \\
 Федеральное государственное автономное образовательное \\
 учреждение высшего образования\\
-«СЕВЕРО-ВОСТОЧНЫЙ ФЕДЕРАЛЬНЫЙ УНИВЕРСИТЕТ ИМЕНИ М.\,К.~АММОСОВА» \\
+«СЕВЕРО-ВОСТОЧНЫЙ ФЕДЕРАЛЬНЫЙ УНИВЕРСИТЕТ \\
+имени М.\,К.~АММОСОВА» \\
 Институт математики и информатики \\
 Кафедра информационных технологий
 
@@ -160,7 +106,7 @@
 
 \textbf{РАБОЧАЯ ПРОГРАММА ДИСЦИПЛИНЫ}
 \\[2mm]
-\textbf{Б1.В.ОД.1.4\ -- Математические основы защиты информации} 
+\textbf{Б1.В.ОД.1.3\ -- Математические основы защиты информации} 
 \\[5mm]
 
 для программы магистратуры\\
@@ -191,32 +137,53 @@
 
 \begin{center}
 \section{АННОТАЦИЯ}
-{\bf к рабочей программе дисциплины\\
-Б1.В.ОД.1.4\ -- Математические основы защиты информации} \\
-Трудоемкость \uline{~4~} з.~е.
+  {\bf к рабочей программе дисциплины\\
+  Б1.В.ОД.1.3\ -- Математические основы защиты информации} \\
+  Трудоемкость \uline{~4~} з.~е.
 \end{center}
 
 
 \subsection{Цель освоения и краткое содержание дисциплины}
-Целью освоения дициплины <<Математические основы защиты информации>> является
+  
+  Целью изучение дициплины <<Математические основы защиты информации>> является: Дать представление о математических основах наиболее значимых алгоритмов, применяемых для защиты информации.
+  
 
 
-\subsection{Перечень планируемых результатов обучения по дисциплине, соотнесенных с планируемыми результатами освоения образовательной программы.}
-\begin{longtable}{|p{8cm}|p{8cm}|}
-\caption{Перечень планируемых результатов обучения}\\
-\hline
-\centering
-Планируемые результаты освоения программы (содержание и коды компетенций) & 
-\centering\arraybackslash
-Планируемые результаты обучения по дисциплине
-\\
-\hline
+\subsection{Перечень планируемых результатов обучения по дисциплине, соотнесенных с~планируемыми результатами освоения образовательной программы}
 
-ПК-7 : применением перспективных методов исследования и решения профессиональных задач на основе знания мировых тенденций развития вычислительной техники и информационных технологий
+\begin{longtable}{|p{45mm}|p{109mm}|}
+  \caption{Перечень планируемых результатов обучения}\\
+  \hline
+  \centering
+  Планируемые результаты освоения программы (содержание и коды компетенций) & 
+  \centering\arraybackslash
+  Планируемые результаты обучения по~дисциплине
+  \\
+  \hline
+  
+  ОК-6 : способностью проявлять инициативу, в том числе в ситуациях риска, брать на себя всю полноту ответственности, \par 
+  
+  ОПК-1 : способностью воспринимать математические, естественнонаучные, социально-экономические и профессиональные знания, умением самостоятельно приобретать, развивать и применять их для решения нестандартных задач, в том числе в новой или незнакомой среде и в междисциплинарном контексте, \par 
+  
+  ОПК-5 : владением методами и средствами получения, хранения, переработки и трансляции информации посредством современных компьютерных технологий, в том числе в глобальных компьютерных сетях, \par 
+  
+  ПК-7 : применением перспективных методов исследования и решения профессиональных задач на основе знания мировых тенденций развития вычислительной техники и информационных технологий
+  & 
+  В результате изучения дисциплины обучающийся должен:\newline
+  \emph{знать:}
+  принципы работы алгоритмов Диффи-Хеллмана и RSA; основные проблемы реализации и известные атаки на один из них
+  
 
-& \\
-\hline
-\end{longtable}
+  \emph{уметь:}
+  объяснять разницу между симметричными и асимметричными криптосистемами; оценивать надежность системы при помощи теоретико-сложностных оценок
+  
+
+  \emph{владеть навыками:}
+  применения и реализации основных эффективных теоретико-числовых алгоритмов, включая нахождение НОД, арифметику в кольцах вычетов, нахождение обратного и степени вычета mod $p$.
+  
+  \\
+  \hline
+  \end{longtable}
 
 
 \subsection{Место дисциплины в~структуре образовательной программы}
@@ -234,14 +201,23 @@
   \centering на которые опирается содержание дисциплины & 
   \centering\arraybackslash для которых содержание дисциплины выступает опорой
   \\ \hline
-  Б1.В.ОД.1.4 & Математические основы защиты информации &  & 
+  Б1.В.ОД.1.3 & Математические основы защиты информации 
+  & 
+  
+   
+  & 
+  
+   
   \\ \hline
   \end{tabular}
   \end{table}
 
-\subsection{Язык преподавания} 
 
+\subsection{Язык преподавания} 
   Русский.
+  
+
+
 
 \newpage
 
@@ -251,7 +227,7 @@
 \caption{Выписка из учебного плана} 
 \begin{tabular}{|p{9cm}|c|c|}
 \hline
-Код и название дисциплины по учебному плану & \multicolumn{2}{p{6cm}|}{Б1.В.ОД.1.4\ -- Математические основы защиты информации }\\
+Код и название дисциплины по учебному плану & \multicolumn{2}{p{6cm}|}{Б1.В.ОД.1.3\ -- Математические основы защиты информации }\\
 \hline
 Курс изучения &\multicolumn{2}{c|}{ 1 }\\
 \hline
@@ -263,13 +239,13 @@
 \hline
 Трудоемкость (в ЗЕТ) &\multicolumn{2}{c|}{ 4 (4) }\\
 \hline
-{\bf Трудоемкость (в часах)} (сумма строк №1,2,3), в~т.ч.:& \multicolumn{2}{c|}{108}\\
+{\bf Трудоемкость (в часах)} (сумма строк №1, 2, 3), в~т.~ч.:& \multicolumn{2}{c|}{144}\\
 \hline
-№\,1. Контактная работа обучающихся с преподавателем (КР), в часах:
+\textbf{№\,1. Контактная работа обучающихся с преподавателем (КР),} в часах:
 & \multicolumn{1}{p{3cm}|}{\centering Объем аудиторной работы, в часаx}
 & \multicolumn{1}{p{3cm}|}{\centering\arraybackslash В~т.\,ч. с~применением ДОТ или ЭО, в~часах}\\
 \hline  
-Объем работы (в часах) (1.1.+1.2.+1.3.)& 49 & \\
+Объем работы (в часах) (1.1.+1.2.+1.3.)& 54 & \\
 \hline
 1.1. Занятия лекционного типа (лекции) & 15 & \\
 \hline
@@ -290,16 +266,18 @@
 \end{tabular}
 \end{table}
 
+
+
 \newpage
 \section{Содержание дисциплины, структурированное по~темам с~указанием отведенного на~них количества академических часов и~видов учебных занятий}
 \subsection{Распределение часов по~темам и~видам учебных занятий}
-\begin{longtable}{|p{59mm}|c|c|c|c|c|c|c|c|c|c|c|}
-\caption{}\\
+\begin{longtable}{|>{\raggedright\arraybackslash}p{59mm}|c|c|c|c|c|c|c|c|c|c|c|}
+\caption{}
+\\
 \hline
- & 
-     & 
+ & & 
 \multicolumn{9}{c|}{Контактная работа, в часах} & 
-    \\
+\\
 \cline{3-11} 
 \raisebox{18mm}{Тема}&
 \rotleft{Всего часов} &
@@ -312,37 +290,114 @@
 \rotleft{Практикумы} &
 \rotleft{из них с прим-м  ЭО и ДОТ} &
 \rotleft{КСР (консультации)} & 
-\rotleft{Часы СРС}\\
-\hline
-a & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 
+\rotleft{Часы СРС}
 \\
 \hline
+Тема 1. Шифрование и криптоанализ на простейших примерах & 31 & 3 & 1 & 0 & 0 & 7 & 5 & 0 & 0 & 1 & 14 \\ 
+\hline
+Тема . Основы теории информации и кодирования           & 24 & 3 & 1 & 0 & 0 & 7 & 5 & 0 & 0 & 1 & 7 \\ 
+\hline
+Тема 3. Хэширование и односторонние функции              & 31 & 3 & 1 & 0 & 0 & 7 & 5 & 0 & 0 & 1 & 14 \\ 
+\hline
+Тема 4. Криптография с открытым ключом                   & 29 & 3 & 1 & 0 & 0 & 7 & 5 & 0 & 0 & 1 & 12 \\ 
+\hline
+Тема 5. Анализ данных и визуализация в Питоне       & 21 & 3 & 0 & 0 & 0 & 6 & 4 & 0 & 0 & 1 & 7 \\ 
+\hline
+ВСЕГО ЧАСОВ & 108 & 15 & 4 & 0 & 0 & 34 & 24 & 0 & 0 & 5 & 54 \\ 
+
+\hline
 \end{longtable}
-
-
 
 \subsection{Содержание тем программы дисциплины} 
 
 
+\textbf{Тема 1. Шифрование и криптоанализ на простейших примерах}\\
+
+
+\textbf{Тема . Основы теории информации и кодирования          }\\
+
+
+\textbf{Тема 3. Хэширование и односторонние функции             }\\
+
+
+\textbf{Тема 4. Криптография с открытым ключом                  }\\
+
+
+\textbf{Тема 5. Анализ данных и визуализация в Питоне      }\\
+
+ 
+
+\subsection{Формы и методы проведения занятий, применяемые учебные технологии}
+
+
+
+
 \section{Перечень учебно-методического обеспечения для самостоятельной работы обучающихся по дисциплине}
-\begin{longtable}{|l|p{40mm}|p{54mm}|c|p{30mm}|}
+\begin{longtable}{|l|>{\raggedright\arraybackslash}p{40mm}|>{\raggedright\arraybackslash}p{54mm}|c|>{\raggedright\arraybackslash}p{30mm}|}
 \hline
 № & \centering Наименование раздела (темы) дисциплины & 
 \centering Вид СРС & \multicolumn{1}{p{14mm}|}{\centering Трудо\-емкость (в часах)} & \centering\arraybackslash Формы и методы контроля\\
+
 \hline
 \end{longtable}
 
 
 \section{Методические указания для обучающихся по освоению дисциплины}
 
+
+
+\subsubsection*{Рейтинговый регламент по дисциплине}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{110mm}|r|r|}
+\hline
+\centering\arraybackslash Вид выполняемой учебной работы (контролирующие мероприятия) & 
+\multicolumn{1}{p{20mm}|}{\centering\arraybackslash Количество баллов (min)} & 
+\multicolumn{1}{p{20mm}|}{\centering\arraybackslash Количество баллов (max)} \\
+
+\hline
+\end{longtable}
+
+\newpage
 \section{Фонд оценочных средств для проведения промежуточной аттестации обучающихся по дисциплине}
+
+\subsection{Показатели, критерии и шкала оценивания}
+
+\begin{longtable}{|p{15mm}|p{53mm}|p{16mm}|p{43mm}|p{14mm}|}
+\hline
+  \centering\small Коды оцениваемых компетенций
+& \centering Показатель оценивания (дескриптор) (по п.1.2) 
+& \centering\small Уровни освоения 
+& \centering Критерий оценивания 
+& \centering\small\arraybackslash Оценка
+\\
+\hline
+
+\end{longtable}
+
+
+
+\subsection{Типовые контрольные задания (вопросы) для промежуточной аттестации}
+
+\begin{longtable}{|p{15mm}|p{42mm}|p{17mm}|p{70mm}|}
+\hline
+\centering\small Коды оцениваемых компетенций  & \centering Оцениваемый показатель (ЗУВ) 
+& \centering Тема  & \centering\arraybackslash Образец типового (тестового или практического) задания (вопроса)
+\\
+\hline
+
+\end{longtable}
+
+
+
+\subsection{Методические материалы, определяющие процедуры оценивания}
+
+
+
 
 \newpage
 \section{Перечень основной и дополнительной учебной литературы, необходимой для освоения дисциплины}
 
-  \begin{table}[H]
-  \caption*{Перечень литературы}
   \begin{longtable}{|l|p{7cm}|p{18mm}|c|p{32mm}|}
+  \caption*{Перечень литературы}\\
   \hline
   № & 
   \centering\small\arraybackslash Автор, название, место издания, издательство, год издания учебной литературы, вид и характеристика иных информационных ресурсов &
@@ -372,7 +427,6 @@ a & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28
   \hline
   
   \end{longtable}
-  \end{table}
   
 \section{Перечень ресурсов информационно-телекоммуникационной сети «Интернет» (далее сеть-Интернет), необходимых для освоения дисциплины}
 \begin{enumerate}
@@ -382,6 +436,7 @@ a & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28
   \item Лапонина О.\,Р. Криптографические основы безопасности.  Режим доступа:\\ http://www.intuit.ru/studies/courses/28/28/info 
   
 \end{enumerate}
+
 
 \newpage
 \section{Описание материально-технической базы, необходимой для осуществления образовательного процесса по дисциплине}
@@ -432,7 +487,7 @@ a & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28 & 28
 \newpage
 \begin{center}
 \section*{ЛИСТ АКТУАЛИЗАЦИИ РАБОЧЕЙ ПРОГРАММЫ ДИСЦИПЛИНЫ}
-Б1.В.ОД.1.4\ --- Математические основы защиты информации 
+Б1.В.ОД.1.3\ --- Математические основы защиты информации 
 \end{center}
 
   \noindent
