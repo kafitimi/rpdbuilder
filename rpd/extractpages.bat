@@ -1,0 +1,1 @@
+mgs -dNOPAUSE -dNOPROMPT -dBATCH -sDEVICE=pdfwrite -dFirstPage=2 -dLastPage=3 -sOutputFile=%2 %1

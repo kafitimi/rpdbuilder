@@ -81,10 +81,10 @@ def load_ini(filename)-> dict:
         else:
             secname = CamelCase(section)
             secdict = {}
-            for key, val in sec.items():
+            for key, val in sec.items(): 
                 inikey = secname + CamelCase(key)
                 lines = val.split('\n')
-                if '|' in val:
+                if len(lines)>1 and sum([1 if '|' in _ else 0 for _ in lines]) > max(0,len(lines)-2):
                     lines = [l.split('|') for l in lines]
                 secdict[inikey] = lines
         res.update(secdict)
@@ -201,6 +201,8 @@ def calc_hour_totals(d : dict):
 
 
 def distribute_hours(d: dict):
+    """ распределяет часы по темам, исходя из заданных
+        в INI-файле абсолютных значений и множителей """
     hours = ('Лек', 'ИнтЛек', 'Пр', 'ИнтПр', 'Лаб', 'ИнтЛаб', 'Практикум', 'ИнтПрактикум' , 'КСР',  'СРС')
     totals = [sum(d.get(h, [0])) for h in hours]
     pprint(totals, width=120)
@@ -210,14 +212,16 @@ def distribute_hours(d: dict):
     
     # парсим значения из пользовательской таблицы в INI-файле
     coef = [[1]*N for i in range(M)]
-    absv = [[0]*N for i in range(M)]
+    absv = [[None]*N for i in range(M)]
     for i in range(M):
         for j in range(min(N, len(vals[i])-2)):
             try:
                 v = vals[i][2+j].strip()
                 if not v: continue
-                arr, convert = (coef, lambda s: float(s[:-1])) if '*' in v else (absv, int)
-                arr[i][j] = convert(v)
+                if '*' in v:
+                    coef[i][j] = float(v[:-1])
+                else:
+                    absv[i][j] = int(v)
             except ValueError:
                 print("""ОШИБКА в строке {} таблицы распределения часов: '{}
                          элементы должны быть целыми числами или множителями вида '2.5*'""".format(i+1, v))
@@ -226,17 +230,19 @@ def distribute_hours(d: dict):
     # раскидываем абсолютные часы
     for i in range(M):
         for j in range(N):
-            totals[j] -= absv[i][j]
-            if totals[j] < 0:
-                h = hours[j]
-                print("ОШИБКА в таблице распределения часов: сумма часов\n"+
-                      "за {} превышает значение {} в учебном плане""".format(h, sum(d.get(h, [0]))))
-                exit(-1)
+            if absv[i][j] is not None:
+                totals[j] -= absv[i][j]
+                if totals[j] < 0:
+                    h = hours[j]
+                    print("ОШИБКА в таблице распределения часов: сумма часов\n"+
+                          "за {} превышает значение {} в учебном плане""".format(h, sum(d.get(h, [0]))))
+                    exit(-1)
 
     # раскидываем оставшиеся часы с учетом коэффициентоа
     for j in range(N):
         N = totals[j]
-        coefs = [coef[i][j] if not absv[i][j] else 0 for i in range(M)]
+        coefs = [coef[i][j] if absv[i][j] is None else 0 for i in range(M)]
+        print(coefs)
 
         # распределить N часов пропорционально coefs в массив absv[*][j]
         s = sum(coefs)
@@ -244,18 +250,20 @@ def distribute_hours(d: dict):
         coefs = [k*c for c in coefs]
         priority = []
         for i in range(M):
-            if not absv[i][j]:
+            if absv[i][j] is None:
                 hrs = int(coefs[i])
                 absv[i][j] = hrs
                 N -= hrs
                 priority.append((i, coefs[i] - hrs + (1 if not hrs else 0)))
 
+        print('-',absv)
         if N > 0:
             priority.sort(key=lambda pair: pair[1] , reverse=True)
             for pos, diff in priority:
                 absv[pos][j] += 1
                 N -= 1
                 if N==0: break
+        print('+',absv)
 
     for i in range(M):
         absv[i].insert(0, sum(absv[i]))
@@ -303,6 +311,10 @@ def split_digits(s: str) -> (str, int):
 
 
 def buildTable(parser, section):
+    """Строит таблицу, превращая секцию INI-файла вида 
+    [Sect] // value1=x // name1=y // value2=z // name2=t
+    в пару словаря SectТабл: [[x,y],[z,t]]
+    """
     #import pdb; pdb.set_trace()
     
     s = parser[section]

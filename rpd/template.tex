@@ -35,15 +35,13 @@
   \makeatletter
 
   % заполняет ширину текста полем с подчеркиванием.
-  % #1 - текст слева, #2 - на подчеркивании, #3 - справа, #4 - подпись под подчеркнутым
-  \newcommand{\ulfield}[4]{
+  % #1 - текст слева, #2 - на подчеркивании, #3 - справа
+  \newcommand{\ulfield}[3]{
   \noindent
   \begin{tabularx}{\linewidth}{@{}l@{}X@{}l@{}}
   #1\if\relax\detokenize{#1}\relax\else\,~\vrule width 0pt\fi 
   & \uline{\vrule width 0pt\hfill#2\hfill\vrule width 0pt} & 
   \if\relax\detokenize{#3}\relax\else\vrule width 0pt~\,\fi #3
-  \\
-  & {\scriptsize \vrule width 0pt\hfill#4\hfill\vrule width 0pt}
   \end{tabularx}
   }
 
@@ -58,7 +56,9 @@
   \makeatother
 
   \newcommand{\datefield}[1][]{\if
-  \relax\detokenize{#1}\relax«\uline{\hspace{22pt}}»~\uline{\hspace{90pt}}\,~20\uline{\hspace{20pt}}~г.\else «\uline{\hspace{18pt}}»~\uline{\hspace{60pt}}\,~20\uline{\hspace{18pt}}~г.\fi
+  \relax\detokenize{#1}\relax
+  «\uline{\hspace{22pt}}»~\uline{\hspace{90pt}}\,~20\uline{\hspace{20pt}}~г.\else 
+  «\uline{\hspace{18pt}}»~\uline{\hspace{60pt}}\,~20\uline{\hspace{18pt}}~г.\fi
   }
 
 
@@ -110,7 +110,7 @@
 \end{flushright}
 
 
-\textbf{РАБОЧАЯ ПРОГРАММА ДИСЦИПЛИНЫ}
+РАБОЧАЯ ПРОГРАММА ДИСЦИПЛИНЫ
 \\[2mm]
 \textbf{<= код =>\ -- <= дисциплина =>} 
 \\[5mm]
@@ -120,17 +120,42 @@
 <= plancode => -- <= planname =>
 \\[15mm]
 
-\begin{tabular}{p{0.3\textwidth}p{0.3\textwidth}p{0.3\textwidth}}
+%{ if автор or авторы%}
+\parbox{\textwidth}{
+%{ if автор %} Автор: <= автор =>
+%{ elif авторы %}
+Авторы: %{ for автор in авторы %}<= автор =>%{ if not forloop.last%}\\%{endif%}%{ endfor %}
+%{ endif %}
+}
+\bigskip
+%{ endif %}
+
+\begin{tabular}{|p{0.3\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}|}
+  \hline
   ОДОБРЕНО &  ОДОБРЕНО  & РЕКОМЕНДОВАНО \\
   Заведующий кафедрой \newline разработчика &
   Заведующий выпускающей кафедрой ИТ&
   Нормоконтроль в составе ОП пройден \\
-  \ulfield{}{}{\uline{/\hspace{30mm}/}}{} &
-  \ulfield{}{}{\uline{/\hspace{30mm}/}}{} &
-  \ulfield{}{}{\uline{/\hspace{30mm}/}}{} \\
-  Протокол № \uline{\hspace{13pt}} от\newline \datefield[small] & 
+  \ulfield{}{}{\uline{/\hspace{30mm}/}} &
+  \ulfield{}{}{\uline{/\hspace{30mm}/}} &
+  \ulfield{}{}{\uline{/\hspace{30mm}/}} \\
   Протокол № \uline{\hspace{13pt}} от\newline \datefield[small] & 
   Протокол № \uline{\hspace{13pt}} от\newline \datefield[small] 
+  %{ if level == 'магистратуры' %}
+  \medskip\par
+  Руководитель программы$^*$\newline
+  \ulfield{}{}{\uline{/\hspace{30mm}/}}\newline \datefield[small]  
+  %{ endif %}& 
+  Протокол № \uline{\hspace{13pt}} от\newline \datefield[small] \\
+  \hline
+  \multicolumn{2}{|p{0.625\textwidth}|}{Рекомендовано к утверждению в составе ОП\newline 
+  <= plancode => «<= planname =>»\newline
+  Председатель УМК ИМИ \uline{\hspace{21mm}} \mbox{/И.\,В.\, Николаева/}\newline 
+  Протокол УМК № \uline{\hspace{12mm}} от \datefield[small]}& 
+  Эксперт УМК ИМИ\newline
+  \ulfield{}{}{\uline{/\hspace{30mm}/}}\newline\datefield[small]
+  \\
+  \hline
 \end{tabular}
 \par\vfill\vspace{6mm}
 Якутск -- <= год =>
@@ -152,17 +177,22 @@
 \subsection{Цель освоения и краткое содержание дисциплины}
   %{ if АннотацияЦели %}
   Изучение дисциплины <<<= дисциплина =>>> имеет следующие цели:
-  \begin{itemize}%{ for item in РесурсыИнтернетСписок %}
+  \begin{itemize}%{ for item in АннотацияЦели %}
     \item <= item => %{ endfor %}
   \end{itemize}
   %{ else %}
-  Целью изучение дициплины <<<= дисциплина =>>> является: <= АннотацияЦель[0] =>.
+  Целью изучения диcциплины <<<= дисциплина =>>> является: <= АннотацияЦель[0] =>.
   %{ endif %}
+  %{ if АннотацияКраткоесодержание %}
+  \textit{Краткое содержание дисциплины.} <= АннотацияКраткоесодержание[0] =>
+  %{ endif %}
+  
 
 
-\subsection{Перечень планируемых результатов обучения по дисциплине, соотнесенных с планируемыми результатами освоения образовательной программы.}
 
-\begin{longtable}{|p{45mm}|p{109mm}|}
+\subsection{Перечень планируемых результатов обучения по дисциплине, соотнесенных с~планируемыми результатами освоения образовательной программы}
+
+\begin{longtable}{|p{54mm}|p{100mm}|}
   \caption{Перечень планируемых результатов обучения}\\
   \hline
   \centering
@@ -221,9 +251,11 @@
   \\ \hline
   <=код=> & <= дисциплина => 
   & 
+  \raggedright
   %{ for item in АннотацияОпирается %}
   <= item =>%{ endfor %} 
   & 
+  \raggedright\arraybackslash
   %{ for item in АннотацияОпорадля %}
   <= item =>%{ endfor %} 
   \\ \hline
@@ -320,12 +352,11 @@
 
 %{ for row in РаспределениеЧасовСписок %}%{ if not loop.last %}
 \textbf{<= row[0] =>}\\
-<= СодержаниеТем[loop.index0] =>
-
+%{ if СодержаниеТем %}<= СодержаниеТем[loop.index0] =>%{ endif %}
 %{ endif %}%{ endfor %} 
 
 \subsection{Формы и методы проведения занятий, применяемые учебные технологии}
-%{ for row in ФормыИТехнологииЗанятийТекст %}<= row =>%{ endfor %}
+%{ for row in ФормыИТехнологииЗанятийТекст %}<= row => %{ endfor %}
 
 
 
@@ -358,7 +389,6 @@
 \hline
 \end{longtable}
 
-\newpage
 \section{Фонд оценочных средств для проведения промежуточной аттестации обучающихся по дисциплине}
 
 \subsection{Показатели, критерии и шкала оценивания}
@@ -372,7 +402,8 @@
 & \centering\small\arraybackslash Оценка
 \\
 \hline
-\multirow{<= ПоказателиОцениванияТабл|length =>}{15mm}{%{for code in Компетенцииs%}<= code =>%{if not loop.last  %}, %{ endif %}%{ endfor %}}
+%{ if ПоказателиОцениванияТабл %}
+\multirow{<= ПоказателиОцениванияТабл|length =>}{15mm}{%{ for code in Компетенцииs %}<= code =>%{ if not loop.last %}, %{ endif %}%{ endfor %}}
 &
 \multirow{<= ПоказателиОцениванияТабл|length =>}{53mm}{\parbox{53mm}{%
 \vrule width 0pt height 10pt \emph{знать:}\newline
@@ -385,13 +416,13 @@
 & 
 %{ for cell in ПоказателиОцениванияТабл[0] %}<= cell =>%{ if not loop.last %} & %{ endif %}%{ endfor %} 
 \\ 
-\cline{3-5}
 %{ for row in ПоказателиОцениванияТабл[1:] %}
+\cline{3-5}
 & & %{ for cell in row %}<= cell =>%{ if not loop.last %} & %{ endif %}%{ endfor %} 
 \\
-
 %{ endfor %}
 \hline
+%{ endif %}
 \end{longtable}
 
 
@@ -409,7 +440,8 @@
 \\
 \hline%{ endfor %}
 \end{longtable}
-
+%{ for row in ТиповыеЗаданияДопТекст %}<= row =>
+%{ endfor %}
 
 
 \subsection{Методические материалы, определяющие процедуры оценивания}
@@ -455,7 +487,7 @@
 \newpage
 \section{Описание материально-технической базы, необходимой для осуществления образовательного процесса по дисциплине}
   %{ for item in МатериальнаяБазаСписок %}
-  %{ if item == 'complab' %}
+  %{ if item in ['complab', ['complab']] %}
        Для проведения лекционных занятий требуется аудитория, оборудованная доской,  мультимедийным проектором с экраном. 
        Для проведения лабораторных занятий требуется компьютерный класс с подключением к интернету.
   %{ else %}
