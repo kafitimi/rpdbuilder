@@ -65,7 +65,7 @@ def load_ini(filename)-> dict:
        ИнформационныеТехнологииСофт:['язык Python версии 3 и новее;', 'среда разработки JetBrains PyCharm;', 'среда разработки Visual Studio.']
     """
     f = open(filename, encoding='utf-8')
-    parser = configparser.ConfigParser(empty_lines_in_values=False)
+    parser = configparser.ConfigParser(empty_lines_in_values=False, interpolation=None)
     parser.read_file(f)
     f.close()
 
@@ -84,7 +84,7 @@ def load_ini(filename)-> dict:
             for key, val in sec.items(): 
                 inikey = secname + CamelCase(key)
                 lines = val.split('\n')
-                if len(lines)>1 and sum([1 if '|' in _ else 0 for _ in lines]) > max(0,len(lines)-2):
+                if secname=='Литература' or (len(lines)>1 and sum([1 if '|' in _ else 0 for _ in lines]) > max(0,len(lines)-2)):
                     lines = [l.split('|') for l in lines]
                 secdict[inikey] = lines
         res.update(secdict)
@@ -137,7 +137,7 @@ def discipline_from_xml(planfile: str, disc_code : str, disc_name : str) -> dict
     d['Компетенцииs'] = expand_competence_list(d['competences'], competences)
     d['ЗЕТ'] = sum(map(int, d['ЗЕТ']))
     d['planname'] = d['planname'].replace('Направление:', '').strip()
-    d['level'] = 'бакалавриата' if d['level']=='бакалавр' else 'магистратуры'
+    d['level'] = 'бакалавриата' if d['level'].lower()=='бакалавр' else 'магистратуры'
     del d['disc']
     
     print(' {}: Семестры {}:     {}'.format(d['level'].upper(), d['Семs'], d['формаконтроляs']))
@@ -148,7 +148,7 @@ def discipline_from_xml(planfile: str, disc_code : str, disc_name : str) -> dict
 def parse_semester_data(semesters : list) -> dict:
     """создает словарь, в котором типам занятий и формам контроля 
     соответатвуют списки по семестрам часов такого типа (ЗЕТов,...).
-    Для списочных значений создаются простые строчные атрибуты 
+    Для списочных значений создаются плоские строковые атрибуты 
     добавлением s к имени ключа, например, если
        d['Лаб'] = ['34', '38'], то
        d['Лабs'] = '34 / 38'.
@@ -158,9 +158,8 @@ def parse_semester_data(semesters : list) -> dict:
     controls = ('Зач', 'Экз')
     sems = ('Ном',  'ЗЕТ')
 
-    for atts in (hours, controls, sems):
-        for att in atts:
-            d[att] = [sem.attrib.get(att, '') for sem in semesters]
+    for att in hours + controls +sems:
+        d[att] = [sem.attrib.get(att, '') for sem in semesters]
 
     calc_hour_totals(d)
 
@@ -203,7 +202,7 @@ def calc_hour_totals(d : dict):
 def distribute_hours(d: dict):
     """ распределяет часы по темам, исходя из заданных
         в INI-файле абсолютных значений и множителей """
-    hours = ('Лек', 'ИнтЛек', 'Пр', 'ИнтПр', 'Лаб', 'ИнтЛаб', 'Практикум', 'ИнтПрактикум' , 'КСР',  'СРС')
+    hours = ('Лек', '0', 'Пр', '0', 'Лаб', '0', 'Практикум', '0' , 'КСР',  'СРС')
     totals = [sum(d.get(h, [0])) for h in hours]
     pprint(totals, width=120)
 
@@ -214,9 +213,10 @@ def distribute_hours(d: dict):
     coef = [[1]*N for i in range(M)]
     absv = [[None]*N for i in range(M)]
     for i in range(M):
-        for j in range(min(N, len(vals[i])-2)):
+        # import pdb; pdb.set_trace()
+        for j in range(min(N, len(vals[i])-1)):
             try:
-                v = vals[i][2+j].strip()
+                v = vals[i][1+j].strip()
                 if not v: continue
                 if '*' in v:
                     coef[i][j] = float(v[:-1])
@@ -238,16 +238,17 @@ def distribute_hours(d: dict):
                           "за {} превышает значение {} в учебном плане""".format(h, sum(d.get(h, [0]))))
                     exit(-1)
 
+
     # раскидываем оставшиеся часы с учетом коэффициентоа
     for j in range(N):
         N = totals[j]
         coefs = [coef[i][j] if absv[i][j] is None else 0 for i in range(M)]
-        print(coefs)
 
         # распределить N часов пропорционально coefs в массив absv[*][j]
         s = sum(coefs)
         k = (1.*N) / s
         coefs = [k*c for c in coefs]
+
         priority = []
         for i in range(M):
             if absv[i][j] is None:
@@ -256,14 +257,14 @@ def distribute_hours(d: dict):
                 N -= hrs
                 priority.append((i, coefs[i] - hrs + (1 if not hrs else 0)))
 
-        print('-',absv)
+        # print('-',absv)
         if N > 0:
             priority.sort(key=lambda pair: pair[1] , reverse=True)
             for pos, diff in priority:
                 absv[pos][j] += 1
                 N -= 1
                 if N==0: break
-        print('+',absv)
+        # print('+',absv)
 
     for i in range(M):
         absv[i].insert(0, sum(absv[i]))
@@ -315,7 +316,6 @@ def buildTable(parser, section):
     [Sect] // value1=x // name1=y // value2=z // name2=t
     в пару словаря SectТабл: [[x,y],[z,t]]
     """
-    #import pdb; pdb.set_trace()
     
     s = parser[section]
     keys = []

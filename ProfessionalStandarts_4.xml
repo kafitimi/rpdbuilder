@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLCardInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ProfessionalStandarts>
+		<ProfessionalStandart>
+			<NameProfessionalStandart>Программист</NameProfessionalStandart>
+			<RegistrationNumber>4</RegistrationNumber>
+			<OrderNumber/>
+			<DateOfApproval/>
+			<FirstSection>
+				<KindProfessionalActivity>Разработка программного обеспечения</KindProfessionalActivity>
+				<CodeKindProfessionalActivity>06.001 </CodeKindProfessionalActivity>
+				<PurposeKindProfessionalActivity>Разработка, отладка, проверка работоспособности, модификация программного обеспечения</PurposeKindProfessionalActivity>
+				<EmploymentGroup>
+					<ListOKZ>
+						<UnitOKZ>
+							<CodeOKZ>2132</CodeOKZ>
+							<NameOKZ>Программисты</NameOKZ>
+						</UnitOKZ>
+						<UnitOKZ>
+							<CodeOKZ>2131</CodeOKZ>
+							<NameOKZ>Разработчики и аналитики компьютерных систем</NameOKZ>
+						</UnitOKZ>
+					</ListOKZ>
+					<ListOKVED>
+						<UnitOKVED>
+							<CodeOKVED>2131</CodeOKVED>
+							<NameOKVED>Разработчики и аналитики компьютерных систем</NameOKVED>
+						</UnitOKVED>
+						<UnitOKVED>
+							<CodeOKVED>72.30</CodeOKVED>
+							<NameOKVED>Обработка данных</NameOKVED>
+						</UnitOKVED>
+					</ListOKVED>
+				</EmploymentGroup>
+			</FirstSection>
+			<ThirdSection>
+				<WorkFunctions>
+					<GeneralizedWorkFunctions>
+						<GeneralizedWorkFunction>
+							<CodeOTF>D</CodeOTF>
+							<NameOTF>Разработка требований и проектирование программного обеспечения</NameOTF>
+							<LevelOfQualification>6</LevelOfQualification>
+							<PossibleJobTitles>
+								<PossibleJobTitle>Ведущий программист</PossibleJobTitle>
+								<PossibleJobTitle>Ведущий инженер-программист</PossibleJobTitle>
+							</PossibleJobTitles>
+							<EducationalRequirements>
+								<EducationalRequirement>Высшее образование</EducationalRequirement>
+								<EducationalRequirement>Повышение квалификации</EducationalRequirement>
+							</EducationalRequirements>
+							<RequirementsWorkExperiences>
+								<RequirementsWorkExperience>Практическая работа в области разработки программного обеспечения не менее 3 лет</RequirementsWorkExperience>
+							</RequirementsWorkExperiences>
+							<SpecialConditionsForAdmissionToWork/>
+							<OtherCharacteristics/>
+							<OtherCharacteristicPlus>
+								<ListOKZ>
+									<UnitOKZ>
+										<CodeOKZ>2132</CodeOKZ>
+										<NameOKZ>Программисты</NameOKZ>
+									</UnitOKZ>
+									<UnitOKZ>
+										<CodeOKZ>2131</CodeOKZ>
+										<NameOKZ>Разработчики и аналитики компьютерных систем</NameOKZ>
+									</UnitOKZ>
+								</ListOKZ>
+								<ListEKS>
+									<UnitEKS>
+										<CodeEKS>-</CodeEKS>
+										<NameEKS>Инженер-программист</NameEKS>
+									</UnitEKS>
+									<UnitEKS>
+										<CodeEKS>-</CodeEKS>
+										<NameEKS>Инженер по автоматизированным системам управления производством</NameEKS>
+									</UnitEKS>
+								</ListEKS>
+								<ListOKSO>
+									<UnitOKSO>
+										<CodeOKSO>010400</CodeOKSO>
+										<NameOKSO>Информационные технологии</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>010500</CodeOKSO>
+										<NameOKSO>Прикладная математика и  информатика</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>220200</CodeOKSO>
+										<NameOKSO>Автоматизация и управление</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230100</CodeOKSO>
+										<NameOKSO>Информатика и вычислительная техника</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230200</CodeOKSO>
+										<NameOKSO>Информационные системы</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230200</CodeOKSO>
+										<NameOKSO>Информационные системы</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230200</CodeOKSO>
+										<NameOKSO>Информационные системы</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230200</CodeOKSO>
+										<NameOKSO>Информационные системы</NameOKSO>
+									</UnitOKSO>
+								</ListOKSO>
+							</OtherCharacteristicPlus>
+							<ParticularWorkFunctions>
+								<ParticularWorkFunction>
+									<CodeTF>D/03.6</CodeTF>
+									<NameTF>Проектирование программного обеспечения</NameTF>
+									<SubQualification>6</SubQualification>
+									<LaborActions>
+										<LaborAction>Разработка, изменение и согласование архитектуры программного обеспечения с системным аналитиком и архитектором программного обеспечения</LaborAction>
+										<LaborAction>Проектирование структур данных</LaborAction>
+										<LaborAction>Проектирование баз данных</LaborAction>
+										<LaborAction>Проектирование программных интерфейсов</LaborAction>
+										<LaborAction>Оценка и согласование сроков выполнения поставленных задач</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Принципы построения архитектуры программного обеспечения и виды архитектуры программного обеспечения</RequiredSkill>
+										<RequiredSkill>Типовые решения, библиотеки программных модулей, шаблоны, классы объектов, используемые при разработке программного обеспечения</RequiredSkill>
+										<RequiredSkill>Методы и средства проектирования программного обеспечения</RequiredSkill>
+										<RequiredSkill>Методы и средства проектирования баз данных</RequiredSkill>
+										<RequiredSkill>Методы и средства проектирования программных интерфейсов</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Использовать существующие типовые решения и шаблоны проектирования программного обеспечения</NecessaryKnowledge>
+										<NecessaryKnowledge>Применять методы и средства проектирования программного обеспечения, структур данных, баз данных, программных интерфейсов</NecessaryKnowledge>
+										<NecessaryKnowledge>Осуществлять коммуникации с заинтересованными сторонами</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+								<ParticularWorkFunction>
+									<CodeTF>D/02.6</CodeTF>
+									<NameTF>Разработка технических спецификаций на программные компоненты и их взаимодействие</NameTF>
+									<SubQualification>6</SubQualification>
+									<LaborActions>
+										<LaborAction>Разработка и согласование технических спецификаций на программные компоненты и их взаимодействие с архитектором программного обеспечения</LaborAction>
+										<LaborAction>Распределение заданий между программистами в соответствии с техническими спецификациями</LaborAction>
+										<LaborAction>Осуществление контроля выполнения заданий</LaborAction>
+										<LaborAction>Осуществление обучения и наставничества</LaborAction>
+										<LaborAction>Формирование и предоставление отчетности в соответствии с установленными регламентами</LaborAction>
+										<LaborAction>Оценка и согласование сроков выполнения поставленных задач</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Языки формализации функциональных спецификаций</RequiredSkill>
+										<RequiredSkill>Методы и приемы формализации задач</RequiredSkill>
+										<RequiredSkill>Методы и средства проектирования программного обеспечения</RequiredSkill>
+										<RequiredSkill>Методы и средства проектирования программных интерфейсов</RequiredSkill>
+										<RequiredSkill>Методы и средства проектирования баз данных</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Выбирать средства реализации требований к программному обеспечению</NecessaryKnowledge>
+										<NecessaryKnowledge>Вырабатывать варианты реализации программного обеспечения</NecessaryKnowledge>
+										<NecessaryKnowledge>Проводить оценку и обоснование рекомендуемых решений</NecessaryKnowledge>
+										<NecessaryKnowledge>Осуществлять коммуникации с заинтересованными сторонами</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+								<ParticularWorkFunction>
+									<CodeTF>D/01.6</CodeTF>
+									<NameTF>Анализ требований к программному обеспечению</NameTF>
+									<SubQualification>6</SubQualification>
+									<LaborActions>
+										<LaborAction>Анализ возможностей реализации требований к программному обеспечению</LaborAction>
+										<LaborAction>Оценка времени и трудоемкости реализации требований к программному обеспечению</LaborAction>
+										<LaborAction>Согласование требований к программному обеспечению с заинтересованными сторонами</LaborAction>
+										<LaborAction>Оценка и согласование сроков выполнения поставленных задач</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Возможности существующей программно-технической архитектуры</RequiredSkill>
+										<RequiredSkill>Возможности современных и перспективных средств разработки программных продуктов, технических средств</RequiredSkill>
+										<RequiredSkill>Методологии разработки программного обеспечения и технологии программирования</RequiredSkill>
+										<RequiredSkill>Методологии и технологии проектирования и использования баз данных</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Проводить анализ исполнения требований</NecessaryKnowledge>
+										<NecessaryKnowledge>Вырабатывать варианты реализации требований</NecessaryKnowledge>
+										<NecessaryKnowledge>Проводить оценку и обоснование рекомендуемых решений</NecessaryKnowledge>
+										<NecessaryKnowledge>Осуществлять коммуникации с заинтересованными сторонами</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+							</ParticularWorkFunctions>
+						</GeneralizedWorkFunction>
+						<GeneralizedWorkFunction>
+							<CodeOTF>С</CodeOTF>
+							<NameOTF>Интеграция программных модулей и компонент и проверка работоспособности выпусков программного продукта</NameOTF>
+							<LevelOfQualification>5</LevelOfQualification>
+							<PossibleJobTitles>
+								<PossibleJobTitle>Старший программист</PossibleJobTitle>
+								<PossibleJobTitle>Инженер-программист</PossibleJobTitle>
+							</PossibleJobTitles>
+							<EducationalRequirements>
+								<EducationalRequirement>Высшее образование</EducationalRequirement>
+								<EducationalRequirement>Повышение квалификации</EducationalRequirement>
+							</EducationalRequirements>
+							<RequirementsWorkExperiences>
+								<RequirementsWorkExperience>Практическая работа в области разработки программного обеспечения не менее 1 года</RequirementsWorkExperience>
+							</RequirementsWorkExperiences>
+							<SpecialConditionsForAdmissionToWork/>
+							<OtherCharacteristics/>
+							<OtherCharacteristicPlus>
+								<ListOKZ>
+									<UnitOKZ>
+										<CodeOKZ>2132</CodeOKZ>
+										<NameOKZ>Программисты</NameOKZ>
+									</UnitOKZ>
+									<UnitOKZ>
+										<CodeOKZ>2131</CodeOKZ>
+										<NameOKZ>Разработчики и аналитики компьютерных систем</NameOKZ>
+									</UnitOKZ>
+								</ListOKZ>
+								<ListEKS>
+									<UnitEKS>
+										<CodeEKS>-</CodeEKS>
+										<NameEKS>Инженер-программист</NameEKS>
+									</UnitEKS>
+									<UnitEKS>
+										<CodeEKS>-</CodeEKS>
+										<NameEKS>Инженер по автоматизированным системам управления производством</NameEKS>
+									</UnitEKS>
+								</ListEKS>
+								<ListOKSO>
+									<UnitOKSO>
+										<CodeOKSO>010400</CodeOKSO>
+										<NameOKSO>Информационные технологии</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>010500</CodeOKSO>
+										<NameOKSO>Прикладная математика и  информатика</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>220200</CodeOKSO>
+										<NameOKSO>Автоматизация и управление</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230100</CodeOKSO>
+										<NameOKSO>Информатика и вычислительная техника</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230200</CodeOKSO>
+										<NameOKSO>Информационные системы</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230200</CodeOKSO>
+										<NameOKSO>Информационные системы</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230200</CodeOKSO>
+										<NameOKSO>Информационные системы</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230200</CodeOKSO>
+										<NameOKSO>Информационные системы</NameOKSO>
+									</UnitOKSO>
+								</ListOKSO>
+							</OtherCharacteristicPlus>
+							<ParticularWorkFunctions>
+								<ParticularWorkFunction>
+									<CodeTF>С/02.5</CodeTF>
+									<NameTF>Осуществление интеграции программных модулей и компонент и верификации выпусков программного продукта</NameTF>
+									<SubQualification>5</SubQualification>
+									<LaborActions>
+										<LaborAction>Процедуры сборки программных модулей и компонент в программный продукт</LaborAction>
+										<LaborAction>Подключение программного продукта к компонентам внешней среды</LaborAction>
+										<LaborAction>Проверка работоспособности выпусков программного продукта</LaborAction>
+										<LaborAction>Внесение изменений в процедуры сборки модулей и компонент программного обеспечения, развертывания программного обеспечения, миграции и преобразования данных</LaborAction>
+										<LaborAction>Оценка и согласование сроков выполнения поставленных задач</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Методы и средства сборки и интеграции программных модулей и компонент</RequiredSkill>
+										<RequiredSkill>Интерфейсы взаимодействия с внешней средой</RequiredSkill>
+										<RequiredSkill>Интерфейсы взаимодействия внутренних модулей системы</RequiredSkill>
+										<RequiredSkill>Методы и средства верификации работоспособности выпусков программных продуктов</RequiredSkill>
+										<RequiredSkill>Языки, утилиты и среды программирования, средства пакетного выполнения процедур</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Выполнять процедуры сборки программных модулей и компонент в программный продукт</NecessaryKnowledge>
+										<NecessaryKnowledge>Производить настройки параметров программного продукта и осуществлять запуск процедур сборки</NecessaryKnowledge>
+										<NecessaryKnowledge>Проводить оценку работоспособности программного продукта</NecessaryKnowledge>
+										<NecessaryKnowledge>Документировать произведенные действия, выявленные проблемы и способы их устранения</NecessaryKnowledge>
+										<NecessaryKnowledge>Выявлять соответствие требований заказчиков с существующими продуктами</NecessaryKnowledge>
+										<NecessaryKnowledge>Создавать резервные копии программ и данных, выполнять восстановление, обеспечивать целостность программного продукта и данных</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+								<ParticularWorkFunction>
+									<CodeTF>С/01.5</CodeTF>
+									<NameTF>Разработка процедур интеграции программных модулей</NameTF>
+									<SubQualification>5</SubQualification>
+									<LaborActions>
+										<LaborAction>Разработка и документирование программных интерфейсов</LaborAction>
+										<LaborAction>Разработка процедур сборки модулей и компонент программного обеспечения</LaborAction>
+										<LaborAction>Разработка процедур развертывания и обновления программного обеспечения</LaborAction>
+										<LaborAction>Разработка процедур миграции и преобразования (конвертации) данных</LaborAction>
+										<LaborAction>Оценка и согласование сроков выполнения поставленных задач</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Методы и средства сборки модулей и компонент программного обеспечения</RequiredSkill>
+										<RequiredSkill>Интерфейсы взаимодействия с внешней средой</RequiredSkill>
+										<RequiredSkill>Интерфейсы взаимодействия внутренних модулей системы</RequiredSkill>
+										<RequiredSkill>Методы и средства разработки процедур для развертывания программного обеспечения</RequiredSkill>
+										<RequiredSkill>Методы и средства миграции и преобразования данных</RequiredSkill>
+										<RequiredSkill>Языки, утилиты и среды программирования, средства пакетного выполнения процедур</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Писать программный код процедур интеграции программных модулей</NecessaryKnowledge>
+										<NecessaryKnowledge>Использовать выбранную среду программирования для разработки процедур интеграции программных модулей</NecessaryKnowledge>
+										<NecessaryKnowledge>Применять методы и средства сборки модулей и компонент программного обеспечения, разработки процедур для развертывания программного обеспечения, миграции и преобразования данных, создания программных интерфейсов</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+							</ParticularWorkFunctions>
+						</GeneralizedWorkFunction>
+						<GeneralizedWorkFunction>
+							<CodeOTF>B</CodeOTF>
+							<NameOTF>Проверка работоспособности и рефакторинг кода программного обеспечения</NameOTF>
+							<LevelOfQualification>4</LevelOfQualification>
+							<PossibleJobTitles>
+								<PossibleJobTitle>Программист</PossibleJobTitle>
+							</PossibleJobTitles>
+							<EducationalRequirements>
+								<EducationalRequirement>Среднее профессиональное образование</EducationalRequirement>
+								<EducationalRequirement>Повышение квалификации</EducationalRequirement>
+							</EducationalRequirements>
+							<RequirementsWorkExperiences>
+								<RequirementsWorkExperience>Практическая работа в области разработки программного обеспечения не менее 6 месяцев</RequirementsWorkExperience>
+							</RequirementsWorkExperiences>
+							<SpecialConditionsForAdmissionToWork/>
+							<OtherCharacteristics/>
+							<OtherCharacteristicPlus>
+								<ListOKZ>
+									<UnitOKZ>
+										<CodeOKZ>2132</CodeOKZ>
+										<NameOKZ>Программисты</NameOKZ>
+									</UnitOKZ>
+									<UnitOKZ>
+										<CodeOKZ>2131</CodeOKZ>
+										<NameOKZ>Разработчики и аналитики компьютерных систем</NameOKZ>
+									</UnitOKZ>
+								</ListOKZ>
+								<ListEKS>
+									<UnitEKS>
+										<CodeEKS>-</CodeEKS>
+										<NameEKS>Техник-программист</NameEKS>
+									</UnitEKS>
+									<UnitEKS>
+										<CodeEKS>-</CodeEKS>
+										<NameEKS>Инженер-программист</NameEKS>
+									</UnitEKS>
+									<UnitEKS>
+										<CodeEKS>-</CodeEKS>
+										<NameEKS>Инженер по автоматизированным системам управления производством</NameEKS>
+									</UnitEKS>
+								</ListEKS>
+								<ListOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230101</CodeOKSO>
+										<NameOKSO>Вычислительные машины, комплексы, системы и сети</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230103</CodeOKSO>
+										<NameOKSO>Автоматизированные системы обработки информации и управления (по отраслям)</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230105</CodeOKSO>
+										<NameOKSO>Программное обеспечение вычислительной техники и автоматизированных систем</NameOKSO>
+									</UnitOKSO>
+								</ListOKSO>
+							</OtherCharacteristicPlus>
+							<ParticularWorkFunctions>
+								<ParticularWorkFunction>
+									<CodeTF>B/04.5</CodeTF>
+									<NameTF>Исправление дефектов, зафиксированных в базе данных дефектов</NameTF>
+									<SubQualification>4</SubQualification>
+									<LaborActions>
+										<LaborAction>Воспроизведение дефектов, зафиксированных в базе данных дефектов</LaborAction>
+										<LaborAction>Установление причин возникновения дефектов</LaborAction>
+										<LaborAction>Внесение изменений в программный код для устранения выявленных дефектов</LaborAction>
+										<LaborAction>Оценка и согласование сроков выполнения поставленных задач</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Методы и приемы отладки программного кода</RequiredSkill>
+										<RequiredSkill>Типовые ошибки, возникающие при разработке программного обеспечения, и методы их диагностики и исправления</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Применять методы и приемы отладки дефектного программного кода</NecessaryKnowledge>
+										<NecessaryKnowledge>Интерпретировать сообщения об ошибках, предупреждения, записи технологических журналов, возникающих при выполнении дефектного кода</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+								<ParticularWorkFunction>
+									<CodeTF>B/04.4</CodeTF>
+									<NameTF>Рефакторинг и оптимизация программного кода</NameTF>
+									<SubQualification>4</SubQualification>
+									<LaborActions>
+										<LaborAction>Анализ программного кода на соответствие требованиям по читаемости и производительности</LaborAction>
+										<LaborAction>Внесение изменений в программный код и проверка его работоспособности</LaborAction>
+										<LaborAction>Оценка и согласование сроков выполнения поставленных задач</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Методы и средства рефакторинга и оптимизации программного кода</RequiredSkill>
+										<RequiredSkill>Языки программирования и среды разработки</RequiredSkill>
+										<RequiredSkill>Внутренние нормативные документы, регламентирующие требования к программному коду, порядок отражения изменений в системе контроля версий</RequiredSkill>
+										<RequiredSkill>Внутренние нормативные документы, регламентирующие порядок отражения результатов рефакторинга и оптимизации в коллективной базе знаний</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Применять методы, средства для рефакторинга и оптимизации</NecessaryKnowledge>
+										<NecessaryKnowledge>Применять инструментальные средства коллективной работы над программным кодом</NecessaryKnowledge>
+										<NecessaryKnowledge>Публиковать результаты рефакторинга и оптимизации в коллективной базе знаний в виде лучших практик</NecessaryKnowledge>
+										<NecessaryKnowledge>Использовать систему контроля версий для регистрации произведенных изменений</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+								<ParticularWorkFunction>
+									<CodeTF>B/03.4</CodeTF>
+									<NameTF>Проверка работоспособности программного обеспечения</NameTF>
+									<SubQualification>4</SubQualification>
+									<LaborActions>
+										<LaborAction>Проверка работоспособности программного обеспечения на основе разработанных тестовых наборов данных</LaborAction>
+										<LaborAction>Оценка соответствия программного обеспечения требуемым характеристикам</LaborAction>
+										<LaborAction>Сбор и анализ полученных результатов проверки работоспособности программного обеспечения</LaborAction>
+										<LaborAction>Оценка и согласование сроков выполнения поставленных задач</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Методы и средства проверки работоспособности программного обеспечения</RequiredSkill>
+										<RequiredSkill>Среда проверки работоспособности и отладки программного обеспечения</RequiredSkill>
+										<RequiredSkill>Внутренние нормативные документы, регламентирующие порядок документирования результатов проверки работоспособности программного обеспечения</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Применять методы и средства проверки работоспособности программного обеспечения</NecessaryKnowledge>
+										<NecessaryKnowledge>Интерпретировать диагностические данные (журналы, протоколы и др.)</NecessaryKnowledge>
+										<NecessaryKnowledge>Анализировать значения полученных характеристик программного обеспечения</NecessaryKnowledge>
+										<NecessaryKnowledge>Документировать результаты проверки работоспособности программного обеспечения</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+								<ParticularWorkFunction>
+									<CodeTF>B/02.4</CodeTF>
+									<NameTF>Разработка тестовых наборов данных</NameTF>
+									<SubQualification>4</SubQualification>
+									<LaborActions>
+										<LaborAction>Подготовка тестовых наборов данных в соответствии с выбранной методикой</LaborAction>
+										<LaborAction>Оценка и согласование сроков выполнения поставленных задач</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Методы создания и документирования контрольных примеров и тестовых наборов данных</RequiredSkill>
+										<RequiredSkill>Правила, алгоритмы и технологии создания тестовых наборов данных</RequiredSkill>
+										<RequiredSkill>Требования к структуре и форматам хранения тестовых наборов данных</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Разработка и оформление контрольных примеров для проверки работоспособности программного обеспечения</NecessaryKnowledge>
+										<NecessaryKnowledge>Разработка процедур генерации тестовых наборов данных с заданными характеристиками</NecessaryKnowledge>
+										<NecessaryKnowledge>Подготовка наборов данных, используемых в процессе проверки работоспособности программного обеспечения</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+								<ParticularWorkFunction>
+									<CodeTF>B/01.4</CodeTF>
+									<NameTF>Разработка процедур проверки работоспособности и измерения характеристик программного обеспечения</NameTF>
+									<SubQualification>4</SubQualification>
+									<LaborActions>
+										<LaborAction>Разработка процедуры проверки работоспособности программного обеспечения</LaborAction>
+										<LaborAction>Разработка процедуры сбора диагностических данных</LaborAction>
+										<LaborAction>Разработка процедуры измерения требуемых характеристик программного обеспечения</LaborAction>
+										<LaborAction>Оценка и согласование сроков выполнения поставленных задач</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Методы автоматической и автоматизированной проверки работоспособности программного обеспечения</RequiredSkill>
+										<RequiredSkill>Основные виды диагностических данных и способы их представления</RequiredSkill>
+										<RequiredSkill>Языки, утилиты и среды программирования, и средства пакетного выполнения процедур</RequiredSkill>
+										<RequiredSkill>Типовые метрики программного обеспечения</RequiredSkill>
+										<RequiredSkill>Основные методы измерения и оценки характеристик программного обеспечения</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Писать программный код процедур проверки работоспособности программного обеспечения на выбранном языке программирования</NecessaryKnowledge>
+										<NecessaryKnowledge>Использовать выбранную среду программирования для разработки процедур проверки работоспособности программного обеспечения на выбранном языке программирования</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+							</ParticularWorkFunctions>
+						</GeneralizedWorkFunction>
+						<GeneralizedWorkFunction>
+							<CodeOTF>A</CodeOTF>
+							<NameOTF>Разработка и отладка программного кода</NameOTF>
+							<LevelOfQualification>3</LevelOfQualification>
+							<PossibleJobTitles>
+								<PossibleJobTitle>Младший программист</PossibleJobTitle>
+								<PossibleJobTitle>Техник-программист</PossibleJobTitle>
+							</PossibleJobTitles>
+							<EducationalRequirements>
+								<EducationalRequirement>Среднее профессиональное образование</EducationalRequirement>
+								<EducationalRequirement>Повышение квалификации</EducationalRequirement>
+							</EducationalRequirements>
+							<RequirementsWorkExperiences/>
+							<SpecialConditionsForAdmissionToWork/>
+							<OtherCharacteristics/>
+							<OtherCharacteristicPlus>
+								<ListOKZ>
+									<UnitOKZ>
+										<CodeOKZ>2132</CodeOKZ>
+										<NameOKZ>Программисты</NameOKZ>
+									</UnitOKZ>
+								</ListOKZ>
+								<ListEKS>
+									<UnitEKS>
+										<CodeEKS>-</CodeEKS>
+										<NameEKS>Техник-программист</NameEKS>
+									</UnitEKS>
+								</ListEKS>
+								<ListOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230101</CodeOKSO>
+										<NameOKSO>Вычислительные машины, комплексы, системы и сети</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230103</CodeOKSO>
+										<NameOKSO>Автоматизированные системы обработки информации и управления (по отраслям)</NameOKSO>
+									</UnitOKSO>
+									<UnitOKSO>
+										<CodeOKSO>230105</CodeOKSO>
+										<NameOKSO>Программное обеспечение вычислительной техники и автоматизированных систем</NameOKSO>
+									</UnitOKSO>
+								</ListOKSO>
+							</OtherCharacteristicPlus>
+							<ParticularWorkFunctions>
+								<ParticularWorkFunction>
+									<CodeTF>А/05.3</CodeTF>
+									<NameTF>Проверка и отладка программного кода</NameTF>
+									<SubQualification>3</SubQualification>
+									<LaborActions>
+										<LaborAction>Анализ и проверка исходного программного кода</LaborAction>
+										<LaborAction>Отладка программного кода на уровне программных модулей</LaborAction>
+										<LaborAction>Отладка программного кода на уровне межмодульных взаимодействий и взаимодействий с окружением</LaborAction>
+										<LaborAction>Оценка и согласование сроков выполнения поставленных задач</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Методы и приемы отладки программного кода</RequiredSkill>
+										<RequiredSkill>Типы и форматы сообщений об ошибках, предупреждений</RequiredSkill>
+										<RequiredSkill>Способы использования технологических журналов, форматы и типы записей журналов</RequiredSkill>
+										<RequiredSkill>Современные компиляторы, отладчики и оптимизаторы программного кода</RequiredSkill>
+										<RequiredSkill>Сообщения о состоянии аппаратных средств</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Выявлять ошибки в программном коде</NecessaryKnowledge>
+										<NecessaryKnowledge>Применять методы и приемы отладки программного кода</NecessaryKnowledge>
+										<NecessaryKnowledge>Интерпретировать сообщения об ошибках, предупреждения, записи технологических журналов</NecessaryKnowledge>
+										<NecessaryKnowledge>Применять современные компиляторы, отладчики и оптимизаторы программного кода</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+								<ParticularWorkFunction>
+									<CodeTF>А/04.3</CodeTF>
+									<NameTF>Работа с системой контроля версий</NameTF>
+									<SubQualification>3</SubQualification>
+									<LaborActions>
+										<LaborAction>Регистрация изменений исходного текста программного кода в системе контроля версий</LaborAction>
+										<LaborAction>Слияние, разделение и сравнение исходных текстов программного кода</LaborAction>
+										<LaborAction>Сохранение сделанных изменений программного кода в соответствии с регламентом контроля версий</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Возможности используемой системы контроля версий и вспомогательных инструментальных программных средств</RequiredSkill>
+										<RequiredSkill>Установленный регламент использования системы контроля версий</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Использовать выбранную систему контроля версий</NecessaryKnowledge>
+										<NecessaryKnowledge>Использовать вспомогательные инструментальные программные средства для обработки исходного текста программного кода</NecessaryKnowledge>
+										<NecessaryKnowledge>Выполнять действия, соответствующие установленному регламенту используемой системы контроля версий</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+								<ParticularWorkFunction>
+									<CodeTF>А/03.3</CodeTF>
+									<NameTF>Оформление программного кода в соответствии с установленными требованиями</NameTF>
+									<SubQualification>3</SubQualification>
+									<LaborActions>
+										<LaborAction>Приведение наименований переменных, функций, классов, структур данных и файлов в соответствие с установленными в организации требованиями</LaborAction>
+										<LaborAction>Структурирование исходного программного кода в соответствии с установленными в организации требованиями</LaborAction>
+										<LaborAction>Комментирование и разметка программного кода в соответствии с установленными в организации требованиями</LaborAction>
+										<LaborAction>Форматирование исходного программного кода в соответствии с установленными в организации требованиями</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Инструментарий для создания и актуализации исходных текстов программ</RequiredSkill>
+										<RequiredSkill>Методы повышения читаемости программного кода</RequiredSkill>
+										<RequiredSkill>Системы кодировки символов, форматы хранения исходных текстов программ</RequiredSkill>
+										<RequiredSkill>Нормативные документы, определяющие требования к оформлению программного кода</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Применять нормативные документы, определяющие требования к оформлению программного кода</NecessaryKnowledge>
+										<NecessaryKnowledge>Применять инструментарий для создания и актуализации исходных текстов программ</NecessaryKnowledge>
+										<NecessaryKnowledge>Применять имеющиеся шаблоны для составления технической документации</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+								<ParticularWorkFunction>
+									<CodeTF>А/02.3</CodeTF>
+									<NameTF>Написание программного кода с использованием языков программирования, определения и манипулирования данными</NameTF>
+									<SubQualification>3</SubQualification>
+									<LaborActions>
+										<LaborAction>Создание программного кода в соответствии с техническим заданием (готовыми спецификациями)</LaborAction>
+										<LaborAction>Оптимизация программного кода с использованием специализированных программных средств</LaborAction>
+										<LaborAction>Оценка и согласование сроков выполнения поставленных задач</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Синтаксис выбранного языка программирования, особенности программирования на этом языке, стандартные библиотеки языка программирования</RequiredSkill>
+										<RequiredSkill>Методологии разработки программного обеспечения</RequiredSkill>
+										<RequiredSkill>Методологии и технологии проектирования и использования баз данных</RequiredSkill>
+										<RequiredSkill>Технологии программирования</RequiredSkill>
+										<RequiredSkill>Особенности выбранной среды программирования и системы управления базами данных</RequiredSkill>
+										<RequiredSkill>Компоненты программно-технических архитектур, существующие приложения и интерфейсы взаимодействия с ними</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Применять выбранные языки программирования для написания программного кода</NecessaryKnowledge>
+										<NecessaryKnowledge>Использовать выбранную среду программирования и средства системы управления базами данных</NecessaryKnowledge>
+										<NecessaryKnowledge>Использовать возможности имеющейся технической и/или программной архитектуры</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+								<ParticularWorkFunction>
+									<CodeTF>А/01.3</CodeTF>
+									<NameTF>Формализация и алгоритмизация поставленных задач</NameTF>
+									<SubQualification>3</SubQualification>
+									<LaborActions>
+										<LaborAction>Составление формализованных описаний решений поставленных задач в соответствии с требованиями технического задания или других принятых в организации нормативных документов</LaborAction>
+										<LaborAction>Разработка алгоритмов решения поставленных задач в соответствии с требованиями технического задания или других принятых в организации нормативных документов</LaborAction>
+										<LaborAction>Оценка и согласовывание сроков выполнения поставленных задач</LaborAction>
+									</LaborActions>
+									<RequiredSkills>
+										<RequiredSkill>Методы и приемы формализации задач</RequiredSkill>
+										<RequiredSkill>Языки формализации функциональных спецификаций</RequiredSkill>
+										<RequiredSkill>Методы и приемы алгоритмизации поставленных задач</RequiredSkill>
+										<RequiredSkill>Нотации и программные продукты для графического отображения алгоритмов</RequiredSkill>
+										<RequiredSkill>Алгоритмы решения типовых задач, области и способы их применения</RequiredSkill>
+									</RequiredSkills>
+									<NecessaryKnowledges>
+										<NecessaryKnowledge>Использовать методы и приемы формализации задач</NecessaryKnowledge>
+										<NecessaryKnowledge>Использовать методы и приемы алгоритмизации поставленных задач</NecessaryKnowledge>
+										<NecessaryKnowledge>Использовать программные продукты для графического отображения алгоритмов</NecessaryKnowledge>
+										<NecessaryKnowledge>Применять стандартные алгоритмы в соответствующих областях</NecessaryKnowledge>
+									</NecessaryKnowledges>
+									<OtherCharacteristics/>
+								</ParticularWorkFunction>
+							</ParticularWorkFunctions>
+						</GeneralizedWorkFunction>
+					</GeneralizedWorkFunctions>
+				</WorkFunctions>
+			</ThirdSection>
+			<FourthSection>
+				<ResponsibleDeveloper>
+					<ResponsibleDeveloper>Федеральное государственное бюджетное образовательное учреждение высшего профессионального образования «Московский государственный университет экономики, статистики и информатики (МЭСИ)»</ResponsibleDeveloper>
+					<ThePositionOfHead>и.о. ректора</ThePositionOfHead>
+					<TheFullNameOfTheHead>Минашкин В.Г.</TheFullNameOfTheHead>
+				</ResponsibleDeveloper>
+				<OrganizationDevelopers>
+					<OrganizationDeveloper>Фирма «1С» города Москвы</OrganizationDeveloper>
+					<OrganizationDeveloper>ООО «1С-МФТИ» города Москвы</OrganizationDeveloper>
+					<OrganizationDeveloper>ООО «СТМ» города Москвы</OrganizationDeveloper>
+					<OrganizationDeveloper>Ассоциация предприятий компьютерных и информационных технологий (АП КИТ) города Москвы</OrganizationDeveloper>
+				</OrganizationDevelopers>
+			</FourthSection>
+		</ProfessionalStandart>
+	</ProfessionalStandarts>
+</XMLCardInfo>

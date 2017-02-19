@@ -3,10 +3,10 @@
   \usepackage{polyglossia, enumitem, array, longtable, multirow, tabularx, rotating, indentfirst, caption, float, ulem, titlesec }%<= additionalpackages =>}
   \setdefaultlanguage{russian} % выбор основного языка (для переносов)
   % шрифты 
-  \defaultfontfeatures{Ligatures=TeX} % нужен для того, чтобы работали стандартные сочетания символов ---, -- << >> и т.п.
   \setmainfont{Times New Roman} 
   \setmonofont[Scale=0.9]{Consolas}
   \setsansfont{Trebuchet MS}
+  \defaultfontfeatures{Ligatures=TeX} % нужен для того, чтобы работали стандартные сочетания символов ---, -- << >> и т.п.
 
   %{ if math=='1' %}
   \usepackage[vargreek-shape=unicode]{unicode-math}
@@ -103,7 +103,7 @@
 \parbox{80mm}{
 УТВЕРЖДАЮ\\
 Директор ИМИ\\[2mm]
-\ulfield{}{}{/\,В.\,И.~Афанасьева\,/}{}\\
+\ulfield{}{}{/\,В.\,И.~Афанасьева\,/}{}\\[1mm]
 \datefield
 \\[20mm]
 }
@@ -201,6 +201,7 @@
   Планируемые результаты обучения по~дисциплине
   \\
   \hline
+  \endhead
   %{ for code in Компетенцииs %}
   <= code => : <= Компетенцииs[code] =>%{ if not loop.last %}, \par 
   %{ endif %}%{endfor %}
@@ -332,13 +333,13 @@
 \raisebox{18mm}{Тема}&
 \rotleft{Всего часов} &
 \rotleft{Лекции} &
-\rotleft{из них с прим-м  ЭО и ДОТ} &
+\rotleft{из них с прим-м ЭО и ДОТ} &
 \rotleft{\parbox{5cm}{\raggedright\arraybackslash Семинары  (практические занятия, коллоквиумы)}} &
-\rotleft{из них с прим-м  ЭО и ДОТ} &
+\rotleft{из них с прим-м ЭО и ДОТ} &
 \rotleft{Лабораторные работы} &
-\rotleft{из них с прим-м  ЭО и ДОТ} &
+\rotleft{из них с прим-м ЭО и ДОТ} &
 \rotleft{Практикумы} &
-\rotleft{из них с прим-м  ЭО и ДОТ} &
+\rotleft{из них с прим-м ЭО и ДОТ} &
 \rotleft{КСР (консультации)} & 
 \rotleft{Часы СРС}
 \\
@@ -433,7 +434,7 @@
 \hline
 \centering\small Коды оцениваемых компетенций  & \centering Оцениваемый показатель (ЗУВ) 
 & \centering Тема  & \centering\arraybackslash Образец типового (тестового или практического) задания (вопроса)
-\\
+\endhead
 \hline
 %{ for row in ТиповыеЗаданияТабл %}%{ for cell in row %}
 <= cell =>%{ if not loop.last %} & %{ endif %}%{ endfor %} 
@@ -476,7 +477,7 @@
   %{ endfor %}
   \end{longtable}
   
-\section{Перечень ресурсов информационно-телекоммуникационной сети «Интернет» (далее сеть-Интернет), необходимых для освоения дисциплины}
+\section{Перечень ресурсов информационно-телекоммуникационной сети «Интернет» (далее~--- сеть Интернет), необходимых для освоения дисциплины}
 \begin{enumerate}
   %{ for item in РесурсыИнтернетСписок %}
   \item <= item => 
