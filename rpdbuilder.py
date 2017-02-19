@@ -76,7 +76,7 @@ def load_ini(filename)-> dict:
             secdict = dict(sec)
         elif section == 'Содержание тем':
             secdict = {'СодержаниеТем': [v for k,v in sec.items()]}
-        elif section in ('Показатели оценивания','Типовые задания'):
+        elif section in ('Показатели оценивания','Показатели оценивания подробно','Типовые задания'):
             secdict = buildTable(parser, section)
         else:
             secname = CamelCase(section)
@@ -313,8 +313,8 @@ def split_digits(s: str) -> (str, int):
 
 def buildTable(parser, section):
     """Строит таблицу, превращая секцию INI-файла вида 
-    [Sect] // value1=x // name1=y // value2=z // name2=t
-    в пару словаря SectТабл: [[x,y],[z,t]]
+    [Sect] // value1=x1 // name1=y1 // value2=x2 // name2=y2
+    в пару словаря SectТабл: [[x1,y1],[x2,y2]]
     """
     
     s = parser[section]
